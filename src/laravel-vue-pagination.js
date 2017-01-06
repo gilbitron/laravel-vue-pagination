@@ -53,10 +53,10 @@ module.exports = {
 
         	start = start < 1 ? 1 : start;
         	end   = end >= this.data.last_page ? this.data.last_page + 1 : end;
-          
-            for (index = start; index < end; index++) { 
-            	pages.push(index);
-            }
+
+			for (index = start; index < end; index++) { 
+				pages.push(index);
+			}
 
         	return pages;
 		}
