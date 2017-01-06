@@ -54,7 +54,7 @@ Vue.component('example-component', {
 			}
 
 			// Using vue-resource as an example
-			this.$http.get('example/results')
+			this.$http.get('example/results?page=' + page)
 				.then(response => {
 					return response.json();
 				}).then(data => {
