@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- stable
+
+deploy:
+  provider: npm
+  email: gilbert@pellegrom.me
+  api_key:
+    secure: coRWDkgvP+3zHqW+GtqD20MVij9XYvn7uS7848eG4Rq1l3MVSuPsOSL1zbWw/a9nX+paIInQMxOSueFK3j3JgHMn0ikqMLG3zw/6QzDOe84QM3oSegynsDfRKxcMtTgeciSArnt5WValC6qv0cqeT4ha1q7AjZEjlEvRtImc0GOYkLVqA1tk3jHA30hQkyJJ9l7oSMzHZmUp1hKEeKrlMKZJMzGPRfblSgXCIpGEdohS5h0LdlowbLiIi8isW/C1vRp7XBkskKjI2THXI94lzYHasQLabPNW3DL1Wra9318LSAWUS9CzHEH+ktobH2mr1hvrs0s5gTaR3VyjNsX9iJd82KGT9yQMz11jmq/OYxAftgVlJadKWt5pPskqCXi2QkGM66vNMJXhGVVysB9YaJ0KhBYbbvtz7y6F2FMrh+zdNCOlgrLk7Q3u+IWnOmBWBv/YYDz/3SB26XnRhljlMrLxETRBiwxtQA8/r6W4v51njC/Jqrt1cAVNaZXSWJIXsYEWgj4Gv1KoJjeoZLYb5fnKMP0S27QFXBZWvjMQJcC40HxFO4/U7r6Zf4EeDkeeUBmV5tSS+9IvcuckUrjxeAKSefXn9BpOFkLXJRHuW0KZ2M+Ef9yY0+SPcVtotuXskeeZYQzpF3gvUl1zwZ/BijtCiEBKNhgqB0C88AQedpM=
+  on:
+    tags: true
+    repo: gilbitron/laravel-vue-pagination
