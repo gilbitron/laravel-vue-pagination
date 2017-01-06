@@ -12,6 +12,10 @@
     "laravel",
     "pagination"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gilbitron/laravel-vue-pagination.git"
+  },
   "main": "src/laravel-vue-pagination.js",
   "scripts": {
     "test": "karma start karma.conf.js",
