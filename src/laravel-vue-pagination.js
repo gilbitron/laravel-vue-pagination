@@ -47,12 +47,18 @@ module.exports = {
 			}
 
         	let start = this.data.current_page - this.limit,
-        	    end   = this.data.current_page + this.limit + 1;
+        	    end   = this.data.current_page + this.limit + 1,
+        	    pages = [],
+        	    index;
 
         	start = start < 1 ? 1 : start;
         	end   = end >= this.data.last_page ? this.data.last_page + 1 : end;
           
-        	return new Array(end - start).fill().map((_,k) => k + start);
+            for (index = start; index < end; index++) { 
+            	pages.push(index);
+            }
+
+        	return pages;
 		}
 	}
 };
