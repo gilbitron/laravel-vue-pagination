@@ -48,13 +48,14 @@ describe('LaravelVuePagination', function() {
 		expect(vm.$el.getElementsByTagName('li')[2].classList).toContain('active');
 	});
 
-	it('emits correct event', function() {
+	it('emits correct event', function(done) {
 		const vm = getComponent(LaravelVuePagination, {
 			data: exampleData
 		});
 
 		vm.$on('pagination-change-page', function (page) {
 			expect(page).toBe(2);
+			done();
 		});
 
 		vm.selectPage(2);
