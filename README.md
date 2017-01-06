@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gilbitron/laravel-vue-pagination.svg?branch=master)](https://travis-ci.org/gilbitron/laravel-vue-pagination)
+
 # Laravel Vue Pagination
 A Vue.js pagination component for Laravel paginators that works with Bootstrap.
 
