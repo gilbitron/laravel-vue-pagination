@@ -28,7 +28,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Use the component:
 
 ```html
-<pagination ref="paginator" :data="laravelData"></pagination>
+<pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
 ```
 
 ```javascript
@@ -42,9 +42,6 @@ Vue.component('example-component', {
 	},
 
 	created() {
-		// Set up the pagination event listener
-		this.$refs.paginator.$on('pagination-change-page', this.getResults);
-
 		// Fetch initial results
 		this.getResults();
 	},
