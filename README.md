@@ -28,12 +28,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Use the component:
 
 ```html
-<div class="panel panel-default" v-for="post in laravelData.data">
-	<div class="panel-heading" v-text="post.title">
-		<div class="panel-body" v-text="post.body">
-		</div>
-	</div>
-</div>
+<ul>
+	 <li v-for="post in laravelData.data" v-text="post.title"></li>
+</ul>
 
 <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
 ```
