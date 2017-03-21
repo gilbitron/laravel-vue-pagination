@@ -70,7 +70,6 @@ Vue.component('example-component', {
 });
 ```
 
-
 ## API
 
 ### Props
