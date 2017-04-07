@@ -76,7 +76,7 @@ Vue.component('example-component', {
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.3/pagination) response. See below for default value. |
+| `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.4/pagination) response. See below for default value. |
 | `limit` | Number | (optional) Limit of pages to be rendered. Default `0` (unlimited links) `-1` will hide numeric pages and leave only arrow navigation. `3` will show 3 previous and 3 next numeric pages from current page. |
 
 ```javascript
