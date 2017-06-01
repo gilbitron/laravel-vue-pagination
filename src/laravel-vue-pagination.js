@@ -45,7 +45,7 @@ module.exports = {
 				return this.data.last_page;
 			}
 
-        	let start = this.data.current_page - this.limit,
+        	var start = this.data.current_page - this.limit,
         	    end   = this.data.current_page + this.limit + 1,
         	    pages = [],
         	    index;
