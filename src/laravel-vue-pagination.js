@@ -2,7 +2,7 @@ module.exports = {
 	props: {
 		data: {
 			type: Object,
-			default() {
+			default: function() {
 				return {
 					current_page: 1,
 					data: [],
@@ -34,10 +34,10 @@ module.exports = {
 	</ul>`,
 
 	methods: {
-		selectPage(page) {
+		selectPage: function(page) {
 			this.$emit('pagination-change-page', page);
 		},
-		getPages() {
+		getPages: function() {
 			if (this.limit === -1) {
 				return 0;
 			}
