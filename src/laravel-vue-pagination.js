@@ -23,11 +23,11 @@ module.exports = {
 	},
 
 	template: '<ul class="pagination" v-if="data.total > data.per_page">\
-		<li v-if="data.prev_page_url">\
+		<li class="page-item" v-if="data.prev_page_url">\
 			<a href="#" aria-label="Previous" @click.prevent="selectPage(--data.current_page)"><span aria-hidden="true">&laquo;</span></a>\
 		</li>\
-		<li v-for="n in getPages()" :class="{ \'active\': n == data.current_page }"><a href="#" @click.prevent="selectPage(n)">{{ n }}</a></li>\
-		<li v-if="data.next_page_url">\
+		<li class="page-item" v-for="n in getPages()" :class="{ \'active\': n == data.current_page }"><a href="#" @click.prevent="selectPage(n)">{{ n }}</a></li>\
+		<li class="page-item" v-if="data.next_page_url">\
 			<a href="#" aria-label="Next" @click.prevent="selectPage(++data.current_page)"><span aria-hidden="true">&raquo;</span></a>\
 		</li>\
 	</ul>',
