@@ -45,19 +45,19 @@ module.exports = {
 				return this.data.last_page;
 			}
 
-        	var start = this.data.current_page - this.limit,
-        	    end   = this.data.current_page + this.limit + 1,
-        	    pages = [],
-        	    index;
+			var start = this.data.current_page - this.limit,
+				end   = this.data.current_page + this.limit + 1,
+				pages = [],
+				index;
 
-        	start = start < 1 ? 1 : start;
-        	end   = end >= this.data.last_page ? this.data.last_page + 1 : end;
+			start = start < 1 ? 1 : start;
+			end   = end >= this.data.last_page ? this.data.last_page + 1 : end;
 
-        	for (index = start; index < end; index++) {
-        		pages.push(index);
-        	}
+			for (index = start; index < end; index++) {
+				pages.push(index);
+			}
 
-        	return pages;
+			return pages;
 		}
 	}
 };
