@@ -34,6 +34,10 @@ module.exports = {
 
 	methods: {
 		selectPage: function(page) {
+			if (page === '...') {
+				return;
+			}
+
 			this.$emit('pagination-change-page', page);
 		},
 		getPages: function() {
@@ -45,16 +49,31 @@ module.exports = {
 				return this.data.last_page;
 			}
 
-			var start = this.data.current_page - this.limit,
-				end   = this.data.current_page + this.limit + 1,
+			var current = this.data.current_page,
+				last = this.data.last_page,
+				delta = this.limit,
+				left = current - delta,
+				right = current + delta + 1,
+				range = [],
 				pages = [],
-				index;
+				l;
 
-			start = start < 1 ? 1 : start;
-			end   = end >= this.data.last_page ? this.data.last_page + 1 : end;
+			for (var i = 1; i <= last; i++) {
+				if (i == 1 || i == last || (i >= left && i < right)) {
+					range.push(i);
+				}
+			}
 
-			for (index = start; index < end; index++) {
-				pages.push(index);
+			for (var i of range) {
+				if (l) {
+					if (i - l === 2) {
+						pages.push(l + 1);
+					} else if (i - l !== 1) {
+						pages.push('...');
+					}
+				}
+				pages.push(i);
+				l = i;
 			}
 
 			return pages;
