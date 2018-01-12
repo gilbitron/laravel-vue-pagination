@@ -77,7 +77,9 @@ Vue.component('example-component', {
 | Name | Type | Description |
 | --- | --- | --- |
 | `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.4/pagination) response. See below for default value. |
-| `limit` | Number | (optional) Limit of pages to be rendered. Default `0` (unlimited pages) `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown. ![screen shot 2018-01-12 at 4 47 50 pm](https://user-images.githubusercontent.com/203882/34885624-8001513e-f7b8-11e7-9922-236e2b07caa0.png) |
+| `limit` | Number | (optional) Limit of pages to be rendered. Default `0` (unlimited pages) `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown (see below for example output). |
+
+**Default `data`**
 
 ```javascript
 {
@@ -92,6 +94,10 @@ Vue.component('example-component', {
 	total: 0,
 }
 ```
+
+**Example `limit`**
+
+![screen shot 2018-01-12 at 4 47 50 pm](https://user-images.githubusercontent.com/203882/34885624-8001513e-f7b8-11e7-9922-236e2b07caa0.png)
 
 ### Events
 
