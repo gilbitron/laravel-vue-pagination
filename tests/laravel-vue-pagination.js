@@ -1,9 +1,9 @@
-const Vue = require('vue');
-const LaravelVuePagination = require('../src/laravel-vue-pagination');
+import { mount } from 'vue-test-utils';
+import LaravelVuePagination from '../src/laravel-vue-pagination';
 
 function getComponent(Component, propsData) {
-	const Ctor = Vue.extend(Component);
-	return new Ctor({ propsData }).$mount();
+	const wrapper = mount(Component, { propsData: propsData });
+	return wrapper.vm;
 }
 
 var exampleData = {
