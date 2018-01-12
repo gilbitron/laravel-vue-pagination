@@ -41,10 +41,26 @@ describe('LaravelVuePagination', function() {
 		expect(vm.$el.getElementsByTagName('li')[0].classList).toContain('active');
 	});
 
-	it('has correct DOM structure with 1 link limit on page 3', function() {
-		exampleData.current_page = 3;
-		exampleData.next_page_url = 'http://example.com/page/4';
-		exampleData.prev_page_url = 'http://example.com/page/2';
+	it('has correct DOM structure with -1 limit on page 2', function() {
+		exampleData.current_page = 2;
+		exampleData.next_page_url = 'http://example.com/page/3';
+		exampleData.prev_page_url = 'http://example.com/page/1';
+
+		const vm = getComponent(LaravelVuePagination, {
+			data: exampleData,
+			limit: -1
+		});
+
+		expect(vm.$el.nodeName).toBe('UL');
+		expect(vm.$el.getElementsByTagName('li').length).toBe(2);
+	});
+
+	it('has correct DOM structure with 1 link limit on page 5', function() {
+		exampleData.current_page = 5;
+		exampleData.last_page = 11;
+		exampleData.per_page = 1;
+		exampleData.next_page_url = 'http://example.com/page/6';
+		exampleData.prev_page_url = 'http://example.com/page/4';
 
 		const vm = getComponent(LaravelVuePagination, {
 			data: exampleData,
@@ -52,12 +68,14 @@ describe('LaravelVuePagination', function() {
 		});
 
 		expect(vm.$el.nodeName).toBe('UL');
-		expect(vm.$el.getElementsByTagName('li').length).toBe(5);
-		expect(vm.$el.getElementsByTagName('li')[2].classList).toContain('active');
+		expect(vm.$el.getElementsByTagName('li').length).toBe(9);
+		expect(vm.$el.getElementsByTagName('li')[4].classList).toContain('active');
 	});
 
 	it('has correct DOM structure when on page 2', function() {
 		exampleData.current_page = 2;
+		exampleData.last_page = 6;
+		exampleData.per_page = 2;
 		exampleData.next_page_url = 'http://example.com/page/3';
 		exampleData.prev_page_url = 'http://example.com/page/1';
 
