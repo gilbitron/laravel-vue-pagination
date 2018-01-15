@@ -107,5 +107,4 @@ Vue.component('example-component', {
 
 ## Credits
 
-Laravel Vue Pagination was created by [Gilbert Pellegrom](http://gilbert.pellegrom.me) from
-[Dev7studios](http://dev7studios.co). Released under the MIT license.
+Laravel Vue Pagination was created by [Gilbert Pellegrom](https://gilbitron.me) from [Dev7studios](https://dev7studios.co). Released under the MIT license.
