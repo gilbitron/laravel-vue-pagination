@@ -64,7 +64,7 @@ module.exports = {
 				}
 			}
 
-			for (var i of range) {
+			range.forEach(function (i) {
 				if (l) {
 					if (i - l === 2) {
 						pages.push(l + 1);
@@ -74,7 +74,7 @@ module.exports = {
 				}
 				pages.push(i);
 				l = i;
-			}
+			});
 
 			return pages;
 		}
