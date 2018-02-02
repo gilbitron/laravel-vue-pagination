@@ -99,4 +99,17 @@ describe('LaravelVuePagination', function() {
 
 		vm.selectPage(2);
 	});
+
+	it('has correct DOM structure when using slots', function() {
+		const wrapper = mount(LaravelVuePagination, {
+			propsData: { data: exampleData },
+			slots: {
+				'prev-nav': '<span class="custom-prev-nav">Previous</span>',
+				'next-nav': '<span>Next</span>'
+			}
+		});
+
+		expect(wrapper.html()).toContain('<span class="custom-prev-nav">Previous</span>');
+		expect(wrapper.html()).toContain('<span>Next</span>');
+	});
 });

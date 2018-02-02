@@ -25,8 +25,10 @@ module.exports = {
 	template: '<ul class="pagination" v-if="data.total > data.per_page">\
 		<li class="page-item pagination-prev-nav" v-if="data.prev_page_url">\
 			<a class="page-link" href="#" aria-label="Previous" @click.prevent="selectPage(--data.current_page)">\
+				<slot name="prev-nav">\
 					<span aria-hidden="true">&laquo;</span>\
 					<span class="sr-only">Previous</span>\
+				</slot>\
 			</a>\
 		</li>\
 		<li class="page-item pagination-page-nav" v-for="n in getPages()" :class="{ \'active\': n == data.current_page }">\
@@ -34,8 +36,10 @@ module.exports = {
 		</li>\
 		<li class="page-item pagination-next-nav" v-if="data.next_page_url">\
 			<a class="page-link" href="#" aria-label="Next" @click.prevent="selectPage(++data.current_page)">\
+				<slot name="next-nav">\
 					<span aria-hidden="true">&raquo;</span>\
 					<span class="sr-only">Next</span>\
+				</slot>\
 			</a>\
 		</li>\
 	</ul>',
