@@ -70,6 +70,17 @@ Vue.component('example-component', {
 });
 ```
 
+### Customizing Prev/Next Buttons
+
+Prev/Next buttons can be customized using the `prev-nav` and `next-nav` slots:
+
+```html
+<pagination :data="laravelData">
+	<span slot="prev-nav">&lt; Previous</span>
+	<span slot="next-nav">Next &gt;</span>
+</pagination>
+```
+
 ## API
 
 ### Props
