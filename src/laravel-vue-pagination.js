@@ -44,7 +44,31 @@ module.exports = {
 		</li>\
 	</ul>',
 
+    mounted() {
+        var self = this;
+        window.addEventListener('keyup', function(e) {
+            if(e.code == 'ArrowLeft') {
+                self.togglePage('down');
+            } else if(e.code == 'ArrowRight') {
+                self.togglePage('up');
+            }
+        })
+    },
+
 	methods: {
+
+        togglePage: function(direction) {
+            if(direction === 'up') {
+                if(this.data.last_page > this.data.current_page) {
+                    this.selectPage(++this.data.current_page);
+                }
+            } else {
+                if(this.data.current_page > 1) {
+                    this.selectPage(--this.data.current_page);
+                }
+            }
+        },
+        
 		selectPage: function(page) {
 			if (page === '...') {
 				return;
