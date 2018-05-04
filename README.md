@@ -29,14 +29,14 @@ Use the component:
 
 ```html
 <ul>
-    <li v-for="post in laravelData.data" v-text="post.title"></li>
+    <li v-for="post in laravelData.data" :key="post.id">{{ post.title }}</li>
 </ul>
 
-<pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
+<pagination :data="laravelData" @pagination-change-page="getResults"></pagination>
 ```
 
 ```javascript
-Vue.component('example-component', {
+export default {
 
 	data() {
 		return {
@@ -45,29 +45,22 @@ Vue.component('example-component', {
 		}
 	},
 
-	created() {
+	mounted() {
 		// Fetch initial results
 		this.getResults();
 	},
 
 	methods: {
 		// Our method to GET results from a Laravel endpoint
-		getResults(page) {
-			if (typeof page === 'undefined') {
-				page = 1;
-			}
-
-			// Using vue-resource as an example
-			this.$http.get('example/results?page=' + page)
+		getResults(page = 1) {
+			axios.get('example/results?page=' + page)
 				.then(response => {
-					return response.json();
-				}).then(data => {
-					this.laravelData = data;
+					this.laravelData = response.data;
 				});
 		}
 	}
 
-});
+}
 ```
 
 ### Customizing Prev/Next Buttons
