@@ -120,7 +120,7 @@ npm run serve
 To run the tests:
 
 ```bash
-npm run test:unit
+npm run test
 ```
 
 ## Credits
