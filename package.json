@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/gilbitron/laravel-vue-pagination.git"
   },
-  "main": "src/LaravelVuePagination.vue",
+  "main": "dist/laravel-vue-pagination.common.js",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib src/LaravelVuePagination.vue",
