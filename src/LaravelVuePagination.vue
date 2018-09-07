@@ -1,28 +1,32 @@
 <template>
-    <ul class="pagination" v-if="data.total > data.per_page">
-        <li class="page-item pagination-prev-nav" v-if="data.prev_page_url">
-            <a class="page-link" href="#" aria-label="Previous" @click.prevent="selectPage(--data.current_page)">
-                <slot name="prev-nav">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </slot>
-            </a>
-        </li>
-        <li class="page-item pagination-page-nav" v-for="(n, key) in getPages()" :key="key" :class="{ 'active': n == data.current_page }">
-            <a class="page-link" href="#" @click.prevent="selectPage(n)">{{ n }}</a>
-        </li>
-        <li class="page-item pagination-next-nav" v-if="data.next_page_url">
-            <a class="page-link" href="#" aria-label="Next" @click.prevent="selectPage(++data.current_page)">
-                <slot name="next-nav">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </slot>
-            </a>
-        </li>
-    </ul>
+    <renderless-laravel-vue-pagination :data="data" :limit="limit" v-on:pagination-change-page="onPaginationChangePage">
+        <ul class="pagination" v-if="data.total > data.per_page" slot-scope="{ data, limit, pageRange, prevButtonEvents, nextButtonEvents, pageButtonEvents }">
+            <li class="page-item pagination-prev-nav" v-if="data.prev_page_url">
+                <a class="page-link" href="#" aria-label="Previous" v-on="prevButtonEvents">
+                    <slot name="prev-nav">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </slot>
+                </a>
+            </li>
+            <li class="page-item pagination-page-nav" v-for="(page, key) in pageRange" :key="key" :class="{ 'active': page == data.current_page }">
+                <a class="page-link" href="#" v-on="pageButtonEvents(page)">{{ page }}</a>
+            </li>
+            <li class="page-item pagination-next-nav" v-if="data.next_page_url">
+                <a class="page-link" href="#" aria-label="Next" v-on="nextButtonEvents">
+                    <slot name="next-nav">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </slot>
+                </a>
+            </li>
+        </ul>
+    </renderless-laravel-vue-pagination>
 </template>
 
 <script>
+import RenderlessLaravelVuePagination from './RenderlessLaravelVuePagination.vue';
+
 export default {
     props: {
         data: {
@@ -48,51 +52,13 @@ export default {
     },
 
     methods: {
-        selectPage (page) {
-            if (page === '...') {
-                return;
-            }
-
+        onPaginationChangePage (page) {
             this.$emit('pagination-change-page', page);
-        },
-        getPages () {
-            if (this.limit === -1) {
-                return 0;
-            }
-
-            if (this.limit === 0) {
-                return this.data.last_page;
-            }
-
-            var current = this.data.current_page;
-            var last = this.data.last_page;
-            var delta = this.limit;
-            var left = current - delta;
-            var right = current + delta + 1;
-            var range = [];
-            var pages = [];
-            var l;
-
-            for (var i = 1; i <= last; i++) {
-                if (i === 1 || i === last || (i >= left && i < right)) {
-                    range.push(i);
-                }
-            }
-
-            range.forEach(function (i) {
-                if (l) {
-                    if (i - l === 2) {
-                        pages.push(l + 1);
-                    } else if (i - l !== 1) {
-                        pages.push('...');
-                    }
-                }
-                pages.push(i);
-                l = i;
-            });
-
-            return pages;
         }
+    },
+
+    components: {
+        RenderlessLaravelVuePagination
     }
 }
 </script>
