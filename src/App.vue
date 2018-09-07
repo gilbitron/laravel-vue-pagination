@@ -1,6 +1,6 @@
 <template>
     <div class="p-5">
-        <pagination :data="laravelData" :limit="2" v-on:pagination-change-page="getResults" />
+        <pagination :data="laravelData" :limit="2" @pagination-change-page="getResults" />
     </div>
 </template>
 
