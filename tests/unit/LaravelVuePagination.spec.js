@@ -1,9 +1,9 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import LaravelVuePagination from '@/LaravelVuePagination.vue';
 
 function getComponent(Component, propsData) {
-    const wrapper = shallowMount(Component, { propsData: propsData });
-    return wrapper.vm;
+    const wrapper = mount(Component, { propsData: propsData });
+    return wrapper;
 }
 
 var exampleData = {
@@ -32,13 +32,13 @@ var exampleData = {
 
 describe('LaravelVuePagination', function() {
     it('has correct DOM structure', function() {
-        const vm = getComponent(LaravelVuePagination, {
+        const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData
         });
 
-        expect(vm.$el.nodeName).toBe('UL');
-        expect(vm.$el.getElementsByTagName('li').length).toBe(7);
-        expect(vm.$el.getElementsByTagName('li')[0].classList).toContain('active');
+        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.findAll('li').length).toBe(7);
+        expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
     });
 
     it('has correct DOM structure with -1 limit on page 2', function() {
@@ -46,13 +46,13 @@ describe('LaravelVuePagination', function() {
         exampleData.next_page_url = 'http://example.com/page/3';
         exampleData.prev_page_url = 'http://example.com/page/1';
 
-        const vm = getComponent(LaravelVuePagination, {
+        const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData,
             limit: -1
         });
 
-        expect(vm.$el.nodeName).toBe('UL');
-        expect(vm.$el.getElementsByTagName('li').length).toBe(2);
+        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.findAll('li').length).toBe(2);
     });
 
     it('has correct DOM structure with 1 link limit on page 5', function() {
@@ -62,14 +62,14 @@ describe('LaravelVuePagination', function() {
         exampleData.next_page_url = 'http://example.com/page/6';
         exampleData.prev_page_url = 'http://example.com/page/4';
 
-        const vm = getComponent(LaravelVuePagination, {
+        const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData,
             limit: 1
         });
 
-        expect(vm.$el.nodeName).toBe('UL');
-        expect(vm.$el.getElementsByTagName('li').length).toBe(9);
-        expect(vm.$el.getElementsByTagName('li')[4].classList).toContain('active');
+        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.findAll('li').length).toBe(9);
+        expect(wrapper.findAll('li').at(4).element.classList).toContain('active');
     });
 
     it('has correct DOM structure when on page 2', function() {
@@ -79,29 +79,29 @@ describe('LaravelVuePagination', function() {
         exampleData.next_page_url = 'http://example.com/page/3';
         exampleData.prev_page_url = 'http://example.com/page/1';
 
-        const vm = getComponent(LaravelVuePagination, {
+        const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData
         });
 
-        expect(vm.$el.getElementsByTagName('li').length).toBe(8);
-        expect(vm.$el.getElementsByTagName('li')[2].classList).toContain('active');
+        expect(wrapper.findAll('li').length).toBe(8);
+        expect(wrapper.findAll('li').at(2).element.classList).toContain('active');
     });
 
     it('emits correct event', function(done) {
-        const vm = getComponent(LaravelVuePagination, {
+        const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData
         });
 
-        vm.$on('pagination-change-page', function (page) {
+        wrapper.vm.$on('pagination-change-page', function (page) {
             expect(page).toBe(2);
             done();
         });
 
-        vm.selectPage(2);
+        wrapper.findAll('li').at(2).find('a').trigger('click');
     });
 
     it('has correct DOM structure when using slots', function() {
-        const wrapper = shallowMount(LaravelVuePagination, {
+        const wrapper = mount(LaravelVuePagination, {
             propsData: { data: exampleData },
             slots: {
                 'prev-nav': '<span class="custom-prev-nav">Previous</span>',
