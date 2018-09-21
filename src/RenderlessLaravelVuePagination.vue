@@ -86,13 +86,20 @@ export default {
             limit: this.limit,
             pageRange: this.pageRange,
             prevButtonEvents: {
-                click: this.previousPage
+                click: (e) => {
+                    e.preventDefault();
+                    this.previousPage();
+                }
             },
             nextButtonEvents: {
-                click: this.nextPage
+                click: (e) => {
+                    e.preventDefault();
+                    this.nextPage();
+                }
             },
             pageButtonEvents: page => ({
-                click: () => {
+                click: (e) => {
+                    e.preventDefault();
                     this.selectPage(page);
                 }
             })
