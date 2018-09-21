@@ -1031,14 +1031,24 @@ var es6_number_constructor = __webpack_require__("c5f6");
       limit: this.limit,
       pageRange: this.pageRange,
       prevButtonEvents: {
-        click: this.previousPage
+        click: function click(e) {
+          e.preventDefault();
+
+          _this.previousPage();
+        }
       },
       nextButtonEvents: {
-        click: this.nextPage
+        click: function click(e) {
+          e.preventDefault();
+
+          _this.nextPage();
+        }
       },
       pageButtonEvents: function pageButtonEvents(page) {
         return {
-          click: function click() {
+          click: function click(e) {
+            e.preventDefault();
+
             _this.selectPage(page);
           }
         };
