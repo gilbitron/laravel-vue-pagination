@@ -80,7 +80,7 @@ Prev/Next buttons can be customized using the `prev-nav` and `next-nav` slots:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.4/pagination) response. See below for default value. |
+| `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.7/pagination) response. See below for default value. |
 | `limit` | Number | (optional) Limit of pages to be rendered. Default `0` (unlimited pages) `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown (see below for example output). |
 
 **Default `data`**
