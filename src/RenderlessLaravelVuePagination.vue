@@ -3,19 +3,7 @@ export default {
     props: {
         data: {
             type: Object,
-            default: () => {
-                return {
-                    current_page: 1,
-                    data: [],
-                    from: 1,
-                    last_page: 1,
-                    next_page_url: null,
-                    per_page: 10,
-                    prev_page_url: null,
-                    to: 1,
-                    total: 0
-                }
-            }
+            default: () => {}
         },
         limit: {
             type: Number,
@@ -24,17 +12,50 @@ export default {
     },
 
     computed: {
+        isApiResource () {
+            return !!this.data.meta;
+        },
+        currentPage () {
+            return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
+        },
+        firstPageUrl () {
+            return this.isApiResource ? this.data.links.first : null;
+        },
+        from () {
+            return this.isApiResource ? this.data.meta.from : this.data.from;
+        },
+        lastPage () {
+            return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
+        },
+        lastPageUrl () {
+            return this.isApiResource ? this.data.links.last : null;
+        },
+        nextPageUrl () {
+            return this.isApiResource ? this.data.links.next : this.data.next_page_url;
+        },
+        perPage () {
+            return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
+        },
+        prevPageUrl () {
+            return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
+        },
+        to () {
+            return this.isApiResource ? this.data.meta.to : this.data.to;
+        },
+        total () {
+            return this.isApiResource ? this.data.meta.total : this.data.total;
+        },
         pageRange () {
             if (this.limit === -1) {
                 return 0;
             }
 
             if (this.limit === 0) {
-                return this.data.last_page;
+                return this.lastPage;
             }
 
-            var current = this.data.current_page;
-            var last = this.data.last_page;
+            var current = this.currentPage;
+            var last = this.lastPage;
             var delta = this.limit;
             var left = current - delta;
             var right = current + delta + 1;
@@ -66,10 +87,10 @@ export default {
 
     methods: {
         previousPage () {
-            this.selectPage(--this.data.current_page);
+            this.selectPage((this.currentPage - 1));
         },
         nextPage () {
-            this.selectPage(++this.data.current_page);
+            this.selectPage((this.currentPage + 1));
         },
         selectPage (page) {
             if (page === '...') {
@@ -84,7 +105,20 @@ export default {
         return this.$scopedSlots.default({
             data: this.data,
             limit: this.limit,
-            pageRange: this.pageRange,
+            computed: {
+                isApiResource: this.isApiResource,
+                currentPage: this.currentPage,
+                firstPageUrl: this.firstPageUrl,
+                from: this.from,
+                lastPage: this.lastPage,
+                lastPageUrl: this.lastPageUrl,
+                nextPageUrl: this.nextPageUrl,
+                perPage: this.perPage,
+                prevPageUrl: this.prevPageUrl,
+                to: this.to,
+                total: this.total,
+                pageRange: this.pageRange
+            },
             prevButtonEvents: {
                 click: (e) => {
                     e.preventDefault();

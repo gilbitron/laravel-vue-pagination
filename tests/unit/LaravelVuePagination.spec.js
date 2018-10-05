@@ -26,8 +26,39 @@ var exampleData = {
     next_page_url: 'http://example.com/page/2',
     per_page: 2,
     prev_page_url: null,
-    to: 3,
+    to: 2,
     total: 11,
+};
+
+var exampleResourceData = {
+    data: [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 },
+        { id: 10 },
+        { id: 11 },
+    ],
+    links: {
+        first: 'http://example.com/page/1',
+        last: 'http://example.com/page/6',
+        prev: null,
+        next: 'http://example.com/page/2'
+    },
+    meta: {
+        current_page: 1,
+        from: 1,
+        last_page: 6,
+        path: 'http://example.com/page',
+        per_page: 2,
+        to: 2,
+        total: 11,
+    }
 };
 
 describe('LaravelVuePagination', function() {
@@ -111,5 +142,15 @@ describe('LaravelVuePagination', function() {
 
         expect(wrapper.html()).toContain('<span class="custom-prev-nav">Previous</span>');
         expect(wrapper.html()).toContain('<span>Next</span>');
+    });
+
+    it('has correct DOM structure for Laravel API Resource responses', function() {
+        const wrapper = getComponent(LaravelVuePagination, {
+            data: exampleResourceData
+        });
+
+        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.findAll('li').length).toBe(7);
+        expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
     });
 });

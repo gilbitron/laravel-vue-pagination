@@ -1,7 +1,7 @@
 <template>
     <renderless-laravel-vue-pagination :data="data" :limit="limit" v-on:pagination-change-page="onPaginationChangePage">
-        <ul class="pagination" v-if="data.total > data.per_page" slot-scope="{ data, limit, pageRange, prevButtonEvents, nextButtonEvents, pageButtonEvents }">
-            <li class="page-item pagination-prev-nav" v-if="data.prev_page_url">
+        <ul class="pagination" v-if="computed.total > computed.perPage" slot-scope="{ data, limit, computed, prevButtonEvents, nextButtonEvents, pageButtonEvents }">
+            <li class="page-item pagination-prev-nav" v-if="computed.prevPageUrl">
                 <a class="page-link" href="#" aria-label="Previous" v-on="prevButtonEvents">
                     <slot name="prev-nav">
                         <span aria-hidden="true">&laquo;</span>
@@ -9,10 +9,10 @@
                     </slot>
                 </a>
             </li>
-            <li class="page-item pagination-page-nav" v-for="(page, key) in pageRange" :key="key" :class="{ 'active': page == data.current_page }">
+            <li class="page-item pagination-page-nav" v-for="(page, key) in computed.pageRange" :key="key" :class="{ 'active': page == computed.currentPage }">
                 <a class="page-link" href="#" v-on="pageButtonEvents(page)">{{ page }}</a>
             </li>
-            <li class="page-item pagination-next-nav" v-if="data.next_page_url">
+            <li class="page-item pagination-next-nav" v-if="computed.nextPageUrl">
                 <a class="page-link" href="#" aria-label="Next" v-on="nextButtonEvents">
                     <slot name="next-nav">
                         <span aria-hidden="true">&raquo;</span>
@@ -31,19 +31,7 @@ export default {
     props: {
         data: {
             type: Object,
-            default: () => {
-                return {
-                    current_page: 1,
-                    data: [],
-                    from: 1,
-                    last_page: 1,
-                    next_page_url: null,
-                    per_page: 10,
-                    prev_page_url: null,
-                    to: 1,
-                    total: 0
-                }
-            }
+            default: () => {}
         },
         limit: {
             type: Number,
