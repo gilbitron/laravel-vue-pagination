@@ -43,9 +43,6 @@ export default {
         prevPageUrl () {
             return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
         },
-        showDisabled () {
-            return !!this.showDisabled;
-        },
         to () {
             return this.isApiResource ? this.data.meta.to : this.data.to;
         },
