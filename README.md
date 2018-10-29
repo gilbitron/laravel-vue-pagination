@@ -74,6 +74,14 @@ Prev/Next buttons can be customized using the `prev-nav` and `next-nav` slots:
 </pagination>
 ```
 
+### Show disabled buttons
+
+Disabled buttons (when there is no next or previous page to navigate to) can be shown instead of hidden:
+
+```html
+<pagination :data="laravelData" :show-disabled="true"></pagination>
+```
+
 ## API
 
 ### Props
@@ -82,6 +90,7 @@ Prev/Next buttons can be customized using the `prev-nav` and `next-nav` slots:
 | --- | --- | --- |
 | `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.7/pagination) response or a [Laravel API Resource](https://laravel.com/docs/5.7/eloquent-resources) response. |
 | `limit` | Number | (optional) Limit of pages to be rendered. `0` shows all pages (default). `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown (see below for example output). |
+| `show-disabled` | Boolean | (optional) Show disabled prev/next buttons instead of hiding them. `false` hides disabled buttons (default). `true` shows disables buttons. |
 
 **Example `limit`**
 
