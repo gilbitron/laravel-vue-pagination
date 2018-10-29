@@ -72,6 +72,25 @@ describe('LaravelVuePagination', function() {
         expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
     });
 
+    it('shows disabled links', function() {
+        const wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+            showDisabled: true,
+        });
+        expect(wrapper.findAll('li').at(0).element.classList).toContain('disabled');
+        expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(-1);
+        expect(wrapper.findAll('.disabled').length).toEqual(1);
+    });
+
+    it('does not show disabled links', function() {
+        const wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+        });
+        expect(wrapper.findAll('li').at(0).element.classList).not.toContain('disabled');
+        expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(0);
+        expect(wrapper.findAll('.disabled').length).toEqual(0);
+    });
+
     it('has correct DOM structure with -1 limit on page 2', function() {
         exampleData.current_page = 2;
         exampleData.next_page_url = 'http://example.com/page/3';
