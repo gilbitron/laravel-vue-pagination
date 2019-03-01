@@ -21,7 +21,9 @@
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib src/LaravelVuePagination.vue",
     "lint": "vue-cli-service lint",
-    "test": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit",
+    "now-build": "vue-cli-service build",
+    "deploy": "npm run now-build && now && now alias"
   },
   "dependencies": {
     "vue": "^2.6.7"
