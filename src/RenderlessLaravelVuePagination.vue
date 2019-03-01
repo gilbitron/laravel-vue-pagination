@@ -109,6 +109,7 @@ export default {
         return this.$scopedSlots.default({
             data: this.data,
             limit: this.limit,
+            showDisabled: this.showDisabled,
             computed: {
                 isApiResource: this.isApiResource,
                 currentPage: this.currentPage,
