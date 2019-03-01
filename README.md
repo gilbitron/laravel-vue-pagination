@@ -17,6 +17,10 @@ npm install laravel-vue-pagination
 yarn add laravel-vue-pagination
 ```
 
+## Demo
+
+See [https://laravel-vue-pagination.now.sh](https://laravel-vue-pagination.now.sh/)
+
 ## Usage
 
 Register the component:
