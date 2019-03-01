@@ -7,7 +7,7 @@ A Vue.js pagination component for Laravel paginators that works with Bootstrap.
 
 * [Vue.js](https://vuejs.org/) 2.x
 * [Laravel](http://laravel.com/docs/) 5.x
-* [Bootstrap](http://getbootstrap.com/) 3/4
+* [Bootstrap](http://getbootstrap.com/) 4
 
 ## Install
 
@@ -74,14 +74,6 @@ Prev/Next buttons can be customized using the `prev-nav` and `next-nav` slots:
 </pagination>
 ```
 
-### Show disabled buttons
-
-Disabled buttons (when there is no next or previous page to navigate to) can be shown instead of hidden:
-
-```html
-<pagination :data="laravelData" :show-disabled="true"></pagination>
-```
-
 ## API
 
 ### Props
@@ -89,12 +81,10 @@ Disabled buttons (when there is no next or previous page to navigate to) can be 
 | Name | Type | Description |
 | --- | --- | --- |
 | `data` | Object | An object containing the structure of a [Laravel paginator](https://laravel.com/docs/5.7/pagination) response or a [Laravel API Resource](https://laravel.com/docs/5.7/eloquent-resources) response. |
-| `limit` | Number | (optional) Limit of pages to be rendered. `0` shows all pages (default). `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown (see below for example output). |
+| `limit` | Number | (optional) Limit of pages to be rendered. `0` shows all pages (default). `-1` will hide numeric pages and leave only arrow navigation. Any positive integer (e.g. `2`) will define how many pages should be shown on either side of the current page when only a range of pages are shown. |
 | `show-disabled` | Boolean | (optional) Show disabled prev/next buttons instead of hiding them. `false` hides disabled buttons (default). `true` shows disables buttons. |
-
-**Example `limit`**
-
-![screen shot 2018-01-12 at 4 47 50 pm](https://user-images.githubusercontent.com/203882/34885624-8001513e-f7b8-11e7-9922-236e2b07caa0.png)
+| `size` | String | (optional) One of `small`, `default` or `large` |
+| `align` | String | (optional) One of `left` (default), `center` or `right` |
 
 ### Events
 
