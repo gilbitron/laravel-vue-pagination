@@ -1,10 +1,20 @@
 <template>
     <div class="p-5">
+        <h1 class="mb-5">Laravel Vue Pagination Demo</h1>
+        <p>
+            <label for="limit">Limit</label><br>
+            <input type="number" id="limit" v-model="limit">
+        </p>
+        <p class="mb-5">
+            <label for="show-disabled">Show Disabled</label><br>
+            <input type="checkbox" id="show-disabled" v-model="showDisabled">
+        </p>
+
         <p>Paginator Response:</p>
-        <pagination :data="laravelData" :limit="2" @pagination-change-page="getResults" />
+        <pagination :data="laravelData" @pagination-change-page="getResults" :limit="limit" :show-disabled="showDisabled" />
 
         <p>API Resource Response:</p>
-        <pagination :data="laravelResourceData" :limit="2" @pagination-change-page="getResourceResults" />
+        <pagination :data="laravelResourceData" @pagination-change-page="getResourceResults" :limit="limit" :show-disabled="showDisabled" />
     </div>
 </template>
 
@@ -39,7 +49,9 @@ export default {
     data () {
         return {
             laravelData: {},
-            laravelResourceData: {}
+            laravelResourceData: {},
+            limit: 0,
+            showDisabled: false
         }
     },
 
@@ -89,6 +101,12 @@ export default {
                     total: dummyData.length
                 }
             };
+        }
+    },
+
+    watch: {
+        limit (newVal) {
+            this.limit = parseInt(newVal);
         }
     },
 
