@@ -12,6 +12,20 @@ export default {
         showDisabled: {
             type: Boolean,
             default: false
+        },
+        size: {
+            type: String,
+            default: 'default',
+            validator: value => {
+                return ['small', 'default', 'large'].indexOf(value) !== -1;
+            }
+        },
+        align: {
+            type: String,
+            default: 'left',
+            validator: value => {
+                return ['left', 'center', 'right'].indexOf(value) !== -1;
+            }
         }
     },
 
@@ -110,6 +124,8 @@ export default {
             data: this.data,
             limit: this.limit,
             showDisabled: this.showDisabled,
+            size: this.size,
+            align: this.align,
             computed: {
                 isApiResource: this.isApiResource,
                 currentPage: this.currentPage,
