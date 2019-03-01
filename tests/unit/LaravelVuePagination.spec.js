@@ -172,4 +172,36 @@ describe('LaravelVuePagination', function() {
         expect(wrapper.findAll('li').length).toBe(7);
         expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
     });
+
+    it('has correct size', function() {
+        let wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+            size: 'small'
+        });
+
+        expect(wrapper.find('.pagination').element.classList).toContain('pagination-sm');
+
+        wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+            size: 'large'
+        });
+
+        expect(wrapper.find('.pagination').element.classList).toContain('pagination-lg');
+    });
+
+    it('has correct align', function() {
+        let wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+            align: 'center'
+        });
+
+        expect(wrapper.find('.pagination').element.classList).toContain('justify-content-center');
+
+        wrapper = getComponent(LaravelVuePagination, {
+            data: exampleData,
+            align: 'right'
+        });
+
+        expect(wrapper.find('.pagination').element.classList).toContain('justify-content-end');
+    });
 });
