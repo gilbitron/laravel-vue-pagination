@@ -5,16 +5,44 @@
             <label for="limit">Limit</label><br>
             <input type="number" id="limit" v-model="limit">
         </p>
-        <p class="mb-5">
+        <p>
             <label for="show-disabled">Show Disabled</label><br>
             <input type="checkbox" id="show-disabled" v-model="showDisabled">
         </p>
+        <p>
+            <label for="size">Size</label><br>
+            <select id="size" v-model="size">
+                <option value="small">Small</option>
+                <option value="default">Default</option>
+                <option value="large">Large</option>
+            </select>
+        </p>
+        <p class="mb-5">
+            <label for="align">Align</label><br>
+            <select id="align" v-model="align">
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+            </select>
+        </p>
 
         <p>Paginator Response:</p>
-        <pagination :data="laravelData" @pagination-change-page="getResults" :limit="limit" :show-disabled="showDisabled" />
+        <pagination
+            :data="laravelData"
+            @pagination-change-page="getResults"
+            :limit="limit"
+            :show-disabled="showDisabled"
+            :size="size"
+            :align="align" />
 
         <p>API Resource Response:</p>
-        <pagination :data="laravelResourceData" @pagination-change-page="getResourceResults" :limit="limit" :show-disabled="showDisabled" />
+        <pagination
+            :data="laravelResourceData"
+            @pagination-change-page="getResourceResults"
+            :limit="limit"
+            :show-disabled="showDisabled"
+            :size="size"
+            :align="align" />
     </div>
 </template>
 
@@ -51,7 +79,9 @@ export default {
             laravelData: {},
             laravelResourceData: {},
             limit: 0,
-            showDisabled: false
+            showDisabled: false,
+            size: 'default',
+            align: 'left'
         }
     },
 
@@ -107,6 +137,9 @@ export default {
     watch: {
         limit (newVal) {
             this.limit = parseInt(newVal);
+            if (this.limit < 0) {
+                this.limit = 0;
+            }
         }
     },
 
