@@ -28,7 +28,23 @@ export default {
             }
         }
     },
+    data() {
+        return {
+            isMounted: false,
+            containerWidth: 0,
+        };
+    },
+    mounted(){
+        this.$nextTick(() => {
+            this.isMounted = true;
+            this.getContainerWidth();
 
+            window.addEventListener('resize', this.getContainerWidth)
+        });
+    },
+    beforeDestroy () {
+        window.removeEventListener('resize', this.getContainerWidth);
+    },
     computed: {
         isApiResource () {
             return !!this.data.meta;
@@ -63,6 +79,42 @@ export default {
         total () {
             return this.isApiResource ? this.data.meta.total : this.data.total;
         },
+        averageItemWidth(){
+
+            if(this.isMounted === false){
+                return 0;
+            }
+
+            var el = this.$el;
+
+            let items = Array.from(el.querySelectorAll('li'))
+                        .filter(li => {
+                            if(li !== null){
+                                return li;
+                            }
+                        })
+                        .map(li => {
+                            return li.offsetWidth;
+                        });
+
+            let sum = items.reduce((a, b) => {
+                            return a + b;
+                        });
+
+            return Math.ceil(sum / items.length);
+        },
+        maxItemsDisplay(){
+            if(this.isMounted === false){
+                return 0;
+            }
+            return Math.floor(this.containerWidth/this.averageItemWidth) - 5; //minus 5 to pad for larger items, could be option
+        },
+        itemsToDisplay(){
+            if(this.total <= this.maxItemsDisplay){
+                return this.total;
+            }
+            return this.maxItemsDisplay;
+        },
         pageRange () {
             if (this.limit === -1) {
                 return 0;
@@ -74,7 +126,7 @@ export default {
 
             var current = this.currentPage;
             var last = this.lastPage;
-            var delta = this.limit;
+            var delta = (this.limit === 0) ? this.itemsToDisplay : this.limit;
             var left = current - delta;
             var right = current + delta + 1;
             var range = [];
@@ -116,13 +168,19 @@ export default {
             }
 
             this.$emit('pagination-change-page', page);
-        }
+        },
+        getContainerWidth () {
+            if(this.isMounted === false){
+                return 0;
+            }
+            this.containerWidth = this.$el.parentElement.offsetWidth;
+        },
     },
 
     render () {
         return this.$scopedSlots.default({
             data: this.data,
-            limit: this.limit,
+            limit: (this.limit === 0) ? this.itemsToDisplay : this.limit,
             showDisabled: this.showDisabled,
             size: this.size,
             align: this.align,
