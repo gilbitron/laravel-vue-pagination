@@ -590,4 +590,4 @@ var LaravelVuePagination_component = normalizeComponent(
 
 /******/ })["default"];
 });
-//# sourceMappingURL=laravel-vue-pagination.umd.js.map
+//# sourceMapURL=laravel-vue-pagination.umd.js.map
