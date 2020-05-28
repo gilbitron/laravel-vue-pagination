@@ -580,4 +580,4 @@ var LaravelVuePagination_component = normalizeComponent(
 /***/ })
 
 /******/ })["default"];
-//# sourceMappingURL=laravel-vue-pagination.common.js.map
+//# sourceMapURL=laravel-vue-pagination.common.js.map
