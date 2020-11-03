@@ -53,7 +53,7 @@ import RenderlessLaravelVuePagination from './RenderlessLaravelVuePagination.vue
 export default {
     props: {
         data: {
-            type: Object,
+            type: [Object,Array]
             default: () => {}
         },
         limit: {
