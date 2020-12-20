@@ -151,7 +151,6 @@ describe('LaravelVuePagination', function() {
     it('has correct DOM structure when using slots', function() {
         const wrapper = mount(LaravelVuePagination, {
             props: { data: exampleData },
-            props: { data: exampleData },
             slots: {
                 'prev-nav': '<span class="custom-prev-nav">Previous</span>',
                 'next-nav': '<span>Next</span>'
