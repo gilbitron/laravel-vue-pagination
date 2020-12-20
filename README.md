@@ -7,7 +7,7 @@ A Vue.js pagination component for Laravel paginators that works with Bootstrap.
 
 ## Requirements
 
-* [Vue.js](https://vuejs.org/) 2.x
+* [Vue.js](https://v3.vuejs.org/) 3.x
 * [Laravel](http://laravel.com/docs/) 5.x
 * [Bootstrap](http://getbootstrap.com/) 4
 
@@ -28,7 +28,7 @@ See [https://laravel-vue-pagination.now.sh](https://laravel-vue-pagination.now.s
 Register the component:
 
 ```javascript
-Vue.component('pagination', require('laravel-vue-pagination'));
+app.component('pagination', require('laravel-vue-pagination'));
 ```
 
 Use the component:

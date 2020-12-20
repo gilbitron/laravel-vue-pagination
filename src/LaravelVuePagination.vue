@@ -5,7 +5,13 @@
         :show-disabled="showDisabled"
         :size="size"
         :align="align"
-        v-on:pagination-change-page="onPaginationChangePage">
+        v-on:pagination-change-page="onPaginationChangePage"
+        v-slot="{
+            computed,
+            prevButtonEvents,
+            nextButtonEvents,
+            pageButtonEvents,
+        }">
 
         <ul class="pagination"
             :class="{
@@ -79,6 +85,10 @@ export default {
             }
         }
     },
+
+    emits: [
+        'pagination-change-page'
+    ],
 
     methods: {
         onPaginationChangePage (page) {

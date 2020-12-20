@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 import LaravelVuePagination from '@/LaravelVuePagination.vue';
 
-function getComponent(Component, propsData) {
-    const wrapper = mount(Component, { propsData: propsData });
+function getComponent(Component, props) {
+    const wrapper = mount(Component, { props: props });
     return wrapper;
 }
 
@@ -67,9 +67,9 @@ describe('LaravelVuePagination', function() {
             data: exampleData
         });
 
-        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.find('ul').exists()).toBe(true);
         expect(wrapper.findAll('li').length).toBe(7);
-        expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+        expect(wrapper.findAll('li')[0].element.classList).toContain('active');
     });
 
     it('shows disabled links', function() {
@@ -77,8 +77,8 @@ describe('LaravelVuePagination', function() {
             data: exampleData,
             showDisabled: true,
         });
-        expect(wrapper.findAll('li').at(0).element.classList).toContain('disabled');
-        expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(-1);
+        expect(wrapper.findAll('li')[0].element.classList).toContain('disabled');
+        expect(wrapper.findAll('a')[0].element.tabIndex).toBe(-1);
         expect(wrapper.findAll('.disabled').length).toEqual(1);
     });
 
@@ -86,8 +86,8 @@ describe('LaravelVuePagination', function() {
         const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData,
         });
-        expect(wrapper.findAll('li').at(0).element.classList).not.toContain('disabled');
-        expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(0);
+        expect(wrapper.findAll('li')[0].element.classList).not.toContain('disabled');
+        expect(wrapper.findAll('a')[0].element.tabIndex).toBe(0);
         expect(wrapper.findAll('.disabled').length).toEqual(0);
     });
 
@@ -101,7 +101,7 @@ describe('LaravelVuePagination', function() {
             limit: -1
         });
 
-        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.find('ul').exists()).toBe(true);
         expect(wrapper.findAll('li').length).toBe(2);
     });
 
@@ -117,9 +117,9 @@ describe('LaravelVuePagination', function() {
             limit: 1
         });
 
-        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.find('ul').exists()).toBe(true);
         expect(wrapper.findAll('li').length).toBe(9);
-        expect(wrapper.findAll('li').at(4).element.classList).toContain('active');
+        expect(wrapper.findAll('li')[4].element.classList).toContain('active');
     });
 
     it('has correct DOM structure when on page 2', function() {
@@ -134,25 +134,24 @@ describe('LaravelVuePagination', function() {
         });
 
         expect(wrapper.findAll('li').length).toBe(8);
-        expect(wrapper.findAll('li').at(2).element.classList).toContain('active');
+        expect(wrapper.findAll('li')[2].element.classList).toContain('active');
     });
 
-    it('emits correct event', function(done) {
+    it('emits correct event', function() {
         const wrapper = getComponent(LaravelVuePagination, {
             data: exampleData
         });
 
-        wrapper.vm.$on('pagination-change-page', function (page) {
-            expect(page).toBe(2);
-            done();
-        });
+        wrapper.findAll('li')[2].find('a').trigger('click');
 
-        wrapper.findAll('li').at(2).find('a').trigger('click');
+        expect(wrapper.emitted()['pagination-change-page'].length).toBe(1);
+        expect(wrapper.emitted()['pagination-change-page'][0]).toEqual([2]);
     });
 
     it('has correct DOM structure when using slots', function() {
         const wrapper = mount(LaravelVuePagination, {
-            propsData: { data: exampleData },
+            props: { data: exampleData },
+            props: { data: exampleData },
             slots: {
                 'prev-nav': '<span class="custom-prev-nav">Previous</span>',
                 'next-nav': '<span>Next</span>'
@@ -168,9 +167,9 @@ describe('LaravelVuePagination', function() {
             data: exampleResourceData
         });
 
-        expect(wrapper.contains('ul')).toBe(true);
+        expect(wrapper.find('ul').exists()).toBe(true);
         expect(wrapper.findAll('li').length).toBe(7);
-        expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+        expect(wrapper.findAll('li')[0].element.classList).toContain('active');
     });
 
     it('has correct size', function() {

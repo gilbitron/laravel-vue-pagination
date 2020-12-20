@@ -40,7 +40,6 @@
             <div class="card-body p-5">
                 <div class="overflow-auto">
                     <pagination
-                        class="mb-0"
                         :data="laravelData"
                         @pagination-change-page="getResults"
                         :limit="limit"
