@@ -20,8 +20,7 @@
                 'justify-content-center': align == 'center',
                 'justify-content-end': align == 'right'
             }"
-            v-if="computed.total > computed.perPage"
-            slot-scope="{ data, limit, showDisabled, size, align, computed, prevButtonEvents, nextButtonEvents, pageButtonEvents }">
+            v-if="computed.total > computed.perPage">
 
             <li class="page-item pagination-prev-nav" :class="{'disabled': !computed.prevPageUrl}" v-if="computed.prevPageUrl || showDisabled">
                 <a class="page-link" href="#" aria-label="Previous" :tabindex="!computed.prevPageUrl && -1" v-on="prevButtonEvents">
