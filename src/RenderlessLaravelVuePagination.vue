@@ -29,6 +29,10 @@ export default {
         }
     },
 
+    emits: [
+        'pagination-change-page'
+    ],
+
     computed: {
         isApiResource () {
             return !!this.data.meta;
@@ -120,7 +124,7 @@ export default {
     },
 
     render () {
-        return this.$scopedSlots.default({
+        return this.$slots.default({
             data: this.data,
             limit: this.limit,
             showDisabled: this.showDisabled,
