@@ -183,6 +183,7 @@ module.exports = require("vue");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
@@ -297,7 +298,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return [_hoisted_4, _hoisted_5];
       })], 16, ["tabindex"])], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)];
     }),
-    _: 1
+    _: 3
   }, 8, ["data", "limit", "show-disabled", "size", "align", "onPaginationChangePage"]);
 }
 // CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=50694ad6
