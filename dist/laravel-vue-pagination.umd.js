@@ -222,7 +222,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/LaravelVuePagination.vue?vue&type=template&id=50694ad6
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/LaravelVuePagination.vue?vue&type=template&id=428eed0e
 
 
 var _hoisted_1 = /*#__PURE__*/Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])("span", {
@@ -269,8 +269,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           'pagination-lg': $props.size == 'large',
           'justify-content-center': $props.align == 'center',
           'justify-content-end': $props.align == 'right'
-        }],
-        "slot-scope": "{ data, limit, showDisabled, size, align, computed, prevButtonEvents, nextButtonEvents, pageButtonEvents }"
+        }]
       }, [computed.prevPageUrl || $props.showDisabled ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
         key: 0,
         class: ["page-item pagination-prev-nav", {
@@ -310,7 +309,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["data", "limit", "show-disabled", "size", "align", "onPaginationChangePage"]);
 }
-// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=50694ad6
+// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=428eed0e
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/RenderlessLaravelVuePagination.vue?vue&type=script&lang=js
 /* harmony default export */ var RenderlessLaravelVuePaginationvue_type_script_lang_js = ({
