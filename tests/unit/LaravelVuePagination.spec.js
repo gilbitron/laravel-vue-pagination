@@ -2,7 +2,9 @@ import { mount } from '@vue/test-utils'
 import LaravelVuePagination from '@/LaravelVuePagination.vue';
 
 function getComponent(Component, props) {
-    const wrapper = mount(Component, { props: props });
+    const wrapper = mount(Component, {
+        propsData: props
+    });
     return wrapper;
 }
 
