@@ -6,12 +6,7 @@
         :size="size"
         :align="align"
         v-on:pagination-change-page="onPaginationChangePage"
-        v-slot="{
-            computed,
-            prevButtonEvents,
-            nextButtonEvents,
-            pageButtonEvents,
-        }">
+        v-slot="slotProps">
 
         <ul class="pagination"
             :class="{
@@ -20,10 +15,10 @@
                 'justify-content-center': align == 'center',
                 'justify-content-end': align == 'right'
             }"
-            v-if="computed.total > computed.perPage">
+            v-if="slotProps.computed.total > slotProps.computed.perPage">
 
-            <li class="page-item pagination-prev-nav" :class="{'disabled': !computed.prevPageUrl}" v-if="computed.prevPageUrl || showDisabled">
-                <a class="page-link" href="#" aria-label="Previous" :tabindex="!computed.prevPageUrl && -1" v-on="prevButtonEvents">
+            <li class="page-item pagination-prev-nav" :class="{'disabled': !slotProps.computed.prevPageUrl}" v-if="slotProps.computed.prevPageUrl || showDisabled">
+                <a class="page-link" href="#" aria-label="Previous" :tabindex="!slotProps.computed.prevPageUrl && -1" v-on="slotProps.prevButtonEvents">
                     <slot name="prev-nav">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
@@ -31,15 +26,15 @@
                 </a>
             </li>
 
-            <li class="page-item pagination-page-nav" v-for="(page, key) in computed.pageRange" :key="key" :class="{ 'active': page == computed.currentPage }">
-                <a class="page-link" href="#" v-on="pageButtonEvents(page)">
+            <li class="page-item pagination-page-nav" v-for="(page, key) in slotProps.computed.pageRange" :key="key" :class="{ 'active': page == slotProps.computed.currentPage }">
+                <a class="page-link" href="#" v-on="slotProps.pageButtonEvents(page)">
                     {{ page }}
-                    <span class="sr-only" v-if="page == computed.currentPage">(current)</span>
+                    <span class="sr-only" v-if="page == slotProps.computed.currentPage">(current)</span>
                 </a>
             </li>
 
-            <li class="page-item pagination-next-nav" :class="{'disabled': !computed.nextPageUrl}" v-if="computed.nextPageUrl || showDisabled">
-                <a class="page-link" href="#" aria-label="Next" :tabindex="!computed.nextPageUrl && -1" v-on="nextButtonEvents">
+            <li class="page-item pagination-next-nav" :class="{'disabled': !slotProps.computed.nextPageUrl}" v-if="slotProps.computed.nextPageUrl || showDisabled">
+                <a class="page-link" href="#" aria-label="Next" :tabindex="!slotProps.computed.nextPageUrl && -1" v-on="slotProps.nextButtonEvents">
                     <slot name="next-nav">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>

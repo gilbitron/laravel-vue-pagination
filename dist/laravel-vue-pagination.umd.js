@@ -222,7 +222,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/LaravelVuePagination.vue?vue&type=template&id=428eed0e
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/LaravelVuePagination.vue?vue&type=template&id=bab002d2
 
 
 var _hoisted_1 = /*#__PURE__*/Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])("span", {
@@ -257,12 +257,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     align: $props.align,
     onPaginationChangePage: $options.onPaginationChangePage
   }, {
-    default: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withCtx"])(function (_ref) {
-      var computed = _ref.computed,
-          prevButtonEvents = _ref.prevButtonEvents,
-          nextButtonEvents = _ref.nextButtonEvents,
-          pageButtonEvents = _ref.pageButtonEvents;
-      return [computed.total > computed.perPage ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("ul", {
+    default: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withCtx"])(function (slotProps) {
+      return [slotProps.computed.total > slotProps.computed.perPage ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("ul", {
         key: 0,
         class: ["pagination", {
           'pagination-sm': $props.size == 'small',
@@ -270,46 +266,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           'justify-content-center': $props.align == 'center',
           'justify-content-end': $props.align == 'right'
         }]
-      }, [computed.prevPageUrl || $props.showDisabled ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
+      }, [slotProps.computed.prevPageUrl || $props.showDisabled ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
         key: 0,
         class: ["page-item pagination-prev-nav", {
-          'disabled': !computed.prevPageUrl
+          'disabled': !slotProps.computed.prevPageUrl
         }]
       }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])("a", Object(external_commonjs_vue_commonjs2_vue_root_Vue_["mergeProps"])({
         class: "page-link",
         href: "#",
         "aria-label": "Previous",
-        tabindex: !computed.prevPageUrl && -1
-      }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(prevButtonEvents)), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "prev-nav", {}, function () {
+        tabindex: !slotProps.computed.prevPageUrl && -1
+      }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(slotProps.prevButtonEvents)), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "prev-nav", {}, function () {
         return [_hoisted_1, _hoisted_2];
-      })], 16, ["tabindex"])], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])(external_commonjs_vue_commonjs2_vue_root_Vue_["Fragment"], null, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderList"])(computed.pageRange, function (page, key) {
+      })], 16, ["tabindex"])], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])(external_commonjs_vue_commonjs2_vue_root_Vue_["Fragment"], null, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderList"])(slotProps.computed.pageRange, function (page, key) {
         return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
           class: ["page-item pagination-page-nav", {
-            'active': page == computed.currentPage
+            'active': page == slotProps.computed.currentPage
           }],
           key: key
         }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])("a", Object(external_commonjs_vue_commonjs2_vue_root_Vue_["mergeProps"])({
           class: "page-link",
           href: "#"
-        }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(pageButtonEvents(page))), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createTextVNode"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toDisplayString"])(page) + " ", 1), page == computed.currentPage ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("span", _hoisted_3, "(current)")) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 16)], 2);
-      }), 128)), computed.nextPageUrl || $props.showDisabled ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
+        }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(slotProps.pageButtonEvents(page))), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createTextVNode"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toDisplayString"])(page) + " ", 1), page == slotProps.computed.currentPage ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("span", _hoisted_3, "(current)")) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 16)], 2);
+      }), 128)), slotProps.computed.nextPageUrl || $props.showDisabled ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("li", {
         key: 1,
         class: ["page-item pagination-next-nav", {
-          'disabled': !computed.nextPageUrl
+          'disabled': !slotProps.computed.nextPageUrl
         }]
       }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])("a", Object(external_commonjs_vue_commonjs2_vue_root_Vue_["mergeProps"])({
         class: "page-link",
         href: "#",
         "aria-label": "Next",
-        tabindex: !computed.nextPageUrl && -1
-      }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(nextButtonEvents)), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "next-nav", {}, function () {
+        tabindex: !slotProps.computed.nextPageUrl && -1
+      }, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toHandlers"])(slotProps.nextButtonEvents)), [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "next-nav", {}, function () {
         return [_hoisted_4, _hoisted_5];
       })], 16, ["tabindex"])], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)];
     }),
     _: 3
   }, 8, ["data", "limit", "show-disabled", "size", "align", "onPaginationChangePage"]);
 }
-// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=428eed0e
+// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=bab002d2
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/RenderlessLaravelVuePagination.vue?vue&type=script&lang=js
 /* harmony default export */ var RenderlessLaravelVuePaginationvue_type_script_lang_js = ({

@@ -169,7 +169,7 @@ export default {
     },
 
     components: {
-        'pagination': LaravelVuePagination
+        pagination: LaravelVuePagination
     }
 }
 </script>
