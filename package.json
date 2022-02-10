@@ -1,7 +1,26 @@
 {
-  "name": "my-vue-app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "laravel-vue-pagination",
+  "version": "3.0.0",
+  "description": "Vue.js pagination component for Laravel paginators and Bootstrap styles",
+  "author": "Gilbert Pellegrom <gilbert@pellegrom.me>",
+  "homepage": "https://github.com/gilbitron/laravel-vue-pagination",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "component",
+    "bootstrap",
+    "laravel",
+    "pagination"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gilbitron/laravel-vue-pagination.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/laravel-vue-pagination.umd.js",
+  "module": "./dist/laravel-vue-pagination.es.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
