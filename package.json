@@ -17,7 +17,8 @@
     "url": "https://github.com/gilbitron/laravel-vue-pagination.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "./dist/laravel-vue-pagination.umd.js",
   "module": "./dist/laravel-vue-pagination.es.js",
