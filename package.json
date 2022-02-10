@@ -1,6 +1,6 @@
 {
   "name": "laravel-vue-pagination",
-  "version": "3.0.0",
+  "version": "3.0.0-beta.1",
   "description": "Vue.js pagination component for Laravel paginators and Bootstrap styles",
   "author": "Gilbert Pellegrom <gilbert@pellegrom.me>",
   "homepage": "https://github.com/gilbitron/laravel-vue-pagination",
