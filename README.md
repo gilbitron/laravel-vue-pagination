@@ -3,6 +3,7 @@
 > Want your logo here? [Sponsor me on GitHub](https://github.com/users/gilbitron/sponsorship)
 
 # Laravel Vue Pagination
+
 A Vue.js pagination component for Laravel paginators.
 
 ## Requirements
