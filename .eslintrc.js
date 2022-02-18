@@ -1,19 +1,36 @@
 module.exports = {
-    root: true,
-    env: {
-        node: true
-    },
-    'extends': [
-        'plugin:vue/essential',
-        '@vue/standard'
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-strongly-recommended',
+        'prettier',
     ],
+    plugins: ['prettier'],
     rules: {
-        'indent': ['error', 4],
-        'semi': 'off',
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+        indent: [
+            'error',
+            4,
+            {
+                SwitchCase: 1,
+            },
+        ],
+        'linebreak-style': ['error', 'unix'],
+        quotes: [
+            'error',
+            'single',
+            {
+                avoidEscape: true,
+            },
+        ],
+        'no-empty': [
+            'error',
+            {
+                allowEmptyCatch: true,
+            },
+        ],
+        semi: 0,
+        'no-undef': 0,
+        'no-console': 0,
+        'vue/html-indent': ['error', 4],
+        'vue/max-attributes-per-line': 0,
     },
-    parserOptions: {
-        parser: 'babel-eslint'
-    }
-}
+};

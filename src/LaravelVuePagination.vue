@@ -1,24 +1,26 @@
 <template>
-    <renderless-laravel-vue-pagination
+    <RenderlessLaravelVuePagination
         :data="data"
         :limit="limit"
         :show-disabled="showDisabled"
         :size="size"
         :align="align"
-        v-on:pagination-change-page="onPaginationChangePage">
-
-        <ul class="pagination"
+        @pagination-change-page="onPaginationChangePage"
+        v-slot="slotProps"
+    >
+        <ul
+            v-bind="$attrs"
+            class="pagination"
             :class="{
-                'pagination-sm': size == 'small',
-                'pagination-lg': size == 'large',
-                'justify-content-center': align == 'center',
-                'justify-content-end': align == 'right'
+                'pagination-sm': slotProps.size == 'small',
+                'pagination-lg': slotProps.size == 'large',
+                'justify-content-center': slotProps.align == 'center',
+                'justify-content-end': slotProps.align == 'right'
             }"
-            v-if="computed.total > computed.perPage"
-            slot-scope="{ data, limit, showDisabled, size, align, computed, prevButtonEvents, nextButtonEvents, pageButtonEvents }">
+            v-if="slotProps.computed.total > slotProps.computed.perPage">
 
-            <li class="page-item pagination-prev-nav" :class="{'disabled': !computed.prevPageUrl}" v-if="computed.prevPageUrl || showDisabled">
-                <a class="page-link" href="#" aria-label="Previous" :tabindex="!computed.prevPageUrl && -1" v-on="prevButtonEvents">
+            <li class="page-item pagination-prev-nav" :class="{'disabled': !slotProps.computed.prevPageUrl}" v-if="slotProps.computed.prevPageUrl || slotProps.showDisabled">
+                <a class="page-link" href="#" aria-label="Previous" :tabindex="!slotProps.computed.prevPageUrl && -1" v-on="slotProps.prevButtonEvents">
                     <slot name="prev-nav">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
@@ -26,15 +28,15 @@
                 </a>
             </li>
 
-            <li class="page-item pagination-page-nav" v-for="(page, key) in computed.pageRange" :key="key" :class="{ 'active': page == computed.currentPage }">
-                <a class="page-link" href="#" v-on="pageButtonEvents(page)">
+            <li class="page-item pagination-page-nav" v-for="(page, key) in slotProps.computed.pageRange" :key="key" :class="{ 'active': page == slotProps.computed.currentPage }">
+                <a class="page-link" href="#" v-on="slotProps.pageButtonEvents(page)">
                     {{ page }}
-                    <span class="sr-only" v-if="page == computed.currentPage">(current)</span>
+                    <span class="sr-only" v-if="page == slotProps.computed.currentPage">(current)</span>
                 </a>
             </li>
 
-            <li class="page-item pagination-next-nav" :class="{'disabled': !computed.nextPageUrl}" v-if="computed.nextPageUrl || showDisabled">
-                <a class="page-link" href="#" aria-label="Next" :tabindex="!computed.nextPageUrl && -1" v-on="nextButtonEvents">
+            <li class="page-item pagination-next-nav" :class="{'disabled': !slotProps.computed.nextPageUrl}" v-if="slotProps.computed.nextPageUrl || slotProps.showDisabled">
+                <a class="page-link" href="#" aria-label="Next" :tabindex="!slotProps.computed.nextPageUrl && -1" v-on="slotProps.nextButtonEvents">
                     <slot name="next-nav">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
@@ -43,14 +45,21 @@
             </li>
 
         </ul>
-
-    </renderless-laravel-vue-pagination>
+    </RenderlessLaravelVuePagination>
 </template>
 
 <script>
 import RenderlessLaravelVuePagination from './RenderlessLaravelVuePagination.vue';
 
 export default {
+    inheritAttrs: false,
+
+    emits: ['pagination-change-page'],
+
+    components: {
+        RenderlessLaravelVuePagination
+    },
+
     props: {
         data: {
             type: Object,
@@ -84,10 +93,6 @@ export default {
         onPaginationChangePage (page) {
             this.$emit('pagination-change-page', page);
         }
-    },
-
-    components: {
-        RenderlessLaravelVuePagination
     }
 }
 </script>

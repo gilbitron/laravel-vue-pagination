@@ -38,24 +38,22 @@
 
         <div class="card bg-light">
             <div class="card-body p-5">
-                <div class="overflow-auto">
-                    <pagination
-                        class="mb-0"
-                        :data="laravelData"
-                        @pagination-change-page="getResults"
-                        :limit="limit"
-                        :show-disabled="showDisabled"
-                        :size="size"
-                        :align="align" />
+                <BootstrapPagination
+                    class="mb-0"
+                    :data="laravelData"
+                    :limit="limit"
+                    :show-disabled="showDisabled"
+                    :size="size"
+                    :align="align"
+                    @pagination-change-page="getResults" />
 
-                    <!--pagination
-                        :data="laravelResourceData"
-                        @pagination-change-page="getResourceResults"
-                        :limit="limit"
-                        :show-disabled="showDisabled"
-                        :size="size"
-                        :align="align" /-->
-                </div>
+                <!--BootstrapPagination
+                    :data="laravelResourceData"
+                    :limit="limit"
+                    :show-disabled="showDisabled"
+                    :size="size"
+                    :align="align"
+                    @pagination-change-page="getResourceResults" /-->
             </div>
         </div>
 
@@ -100,6 +98,10 @@ const dummyData = [
 ];
 
 export default {
+    components: {
+        'BootstrapPagination': LaravelVuePagination
+    },
+
     data () {
         return {
             laravelData: {},
@@ -167,10 +169,6 @@ export default {
                 this.limit = 0;
             }
         }
-    },
-
-    components: {
-        'pagination': LaravelVuePagination
     }
 }
 </script>

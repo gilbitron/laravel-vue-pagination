@@ -1,5 +1,7 @@
 <script>
 export default {
+    emits: ['pagination-change-page'],
+
     props: {
         data: {
             type: Object,
@@ -120,7 +122,7 @@ export default {
     },
 
     render () {
-        return this.$scopedSlots.default({
+        return this.$slots.default({
             data: this.data,
             limit: this.limit,
             showDisabled: this.showDisabled,
