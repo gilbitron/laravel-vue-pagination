@@ -11,6 +11,8 @@ A Vue.js pagination component for Laravel paginators.
 * [Laravel](http://laravel.com/docs/) 5+
 * [Bootstrap](http://getbootstrap.com/) 4
 
+For Vue 2 support use [v2](https://github.com/gilbitron/laravel-vue-pagination/releases/tag/2.3.2).
+
 ## Install
 
 ```bash
