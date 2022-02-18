@@ -3,7 +3,7 @@
 > Want your logo here? [Sponsor me on GitHub](https://github.com/users/gilbitron/sponsorship)
 
 # Laravel Vue Pagination
-A Vue.js pagination component for Laravel paginators that works with Bootstrap.
+A Vue.js pagination component for Laravel paginators.
 
 ## Requirements
 
@@ -14,9 +14,9 @@ A Vue.js pagination component for Laravel paginators that works with Bootstrap.
 ## Install
 
 ```bash
-npm install laravel-vue-pagination@next
+npm install laravel-vue-pagination
 // or
-yarn add laravel-vue-pagination@next
+yarn add laravel-vue-pagination
 ```
 
 ## Demo
