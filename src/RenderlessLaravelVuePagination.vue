@@ -33,7 +33,8 @@ export default {
 
     computed: {
         isApiResource () {
-            return !!this.data.meta;
+            // !!(typeof this.data !== 'undefined' && typeof this.data.meta !== 'undefined')
+            return !!(this.data && this.data.meta);
         },
         currentPage () {
             return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
