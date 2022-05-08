@@ -4,8 +4,28 @@ export default {
 
     props: {
         data: {
-            type: Object,
-            default: () => {}
+          type: Object,
+          default(rawProps) {
+            return {
+              current_page: 0,
+              data: [],
+              first_page_url: '',
+              from: 0,
+              last_page: 0,
+              last_page_url: '',
+              links: [{
+                url: '',
+                label: '',
+                active: false
+              }],
+              next_page_url: '',
+              path: '',
+              per_page: 0,
+              prev_page_url: '',
+              to: 0,
+              total: 0
+            }
+          }
         },
         limit: {
             type: Number,
@@ -32,39 +52,41 @@ export default {
     },
 
     computed: {
-        isApiResource () {
-            // !!(typeof this.data !== 'undefined' && typeof this.data.meta !== 'undefined')
-            return !!(this.data && this.data.meta);
+        checkMeta () {
+          return typeof this.data !== 'undefined' && typeof this.data.meta !== 'undefined' ? this.data.meta : null;
         },
-        currentPage () {
-            return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
+        isApiResource() {
+          return this.checkMeta != null;
         },
-        firstPageUrl () {
-            return this.isApiResource ? this.data.links.first : null;
+        currentPage() {
+          return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
         },
-        from () {
-            return this.isApiResource ? this.data.meta.from : this.data.from;
+        firstPageUrl() {
+          return this.isApiResource ? this.data.links.first : null;
         },
-        lastPage () {
-            return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
+        from() {
+          return this.isApiResource ? this.data.meta.from : this.data.from;
         },
-        lastPageUrl () {
-            return this.isApiResource ? this.data.links.last : null;
+        lastPage() {
+          return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
         },
-        nextPageUrl () {
-            return this.isApiResource ? this.data.links.next : this.data.next_page_url;
+        lastPageUrl() {
+          return this.isApiResource ? this.data.links.last : null;
         },
-        perPage () {
-            return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
+        nextPageUrl() {
+          return this.isApiResource ? this.data.links.next : this.data.next_page_url;
         },
-        prevPageUrl () {
-            return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
+        perPage() {
+          return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
         },
-        to () {
-            return this.isApiResource ? this.data.meta.to : this.data.to;
+        prevPageUrl() {
+          return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
         },
-        total () {
-            return this.isApiResource ? this.data.meta.total : this.data.total;
+        to() {
+          return this.isApiResource ? this.data.meta.to : this.data.to;
+        },
+        total() {
+          return this.isApiResource ? this.data.meta.total : this.data.total;
         },
         pageRange () {
             if (this.limit === -1) {
