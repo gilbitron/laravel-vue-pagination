@@ -31,7 +31,11 @@
             <li class="page-item pagination-page-nav" v-for="(page, key) in slotProps.computed.pageRange" :key="key" :class="{ 'active': page == slotProps.computed.currentPage }">
                 <a class="page-link" href="#" v-on="slotProps.pageButtonEvents(page)">
                     {{ page }}
-                    <span class="sr-only" v-if="page == slotProps.computed.currentPage">(current)</span>
+                    <span class="sr-only" v-if="page == slotProps.computed.currentPage">
+                        <slot name="current-nav">
+                            (current)
+                        </slot>
+                    </span>
                 </a>
             </li>
 
