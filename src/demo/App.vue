@@ -5,11 +5,18 @@
 
         <form class="mb-5" @submit.prevent>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
+                    <label for="style">Style</label><br>
+                    <select id="size" class="form-control" v-model="style">
+                        <option value="bootstrap4">Bootstrap 4</option>
+                        <option value="bootstrap5">Bootstrap 5</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
                     <label for="limit">Limit</label><br>
                     <input type="number" id="limit" class="form-control" v-model="limit">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="size">Size</label><br>
                     <select id="size" class="form-control" v-model="size">
                         <option value="small">Small</option>
@@ -17,7 +24,7 @@
                         <option value="large">Large</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="align">Align</label><br>
                     <select id="align" class="form-control" v-model="align">
                         <option value="left">Left</option>
@@ -38,22 +45,28 @@
 
         <div class="card bg-light">
             <div class="card-body p-5">
-                <BootstrapPagination
-                    class="mb-0"
-                    :data="laravelData"
-                    :limit="limit"
-                    :show-disabled="showDisabled"
-                    :size="size"
-                    :align="align"
-                    @pagination-change-page="getResults" />
-
-                <!--BootstrapPagination
-                    :data="laravelResourceData"
-                    :limit="limit"
-                    :show-disabled="showDisabled"
-                    :size="size"
-                    :align="align"
-                    @pagination-change-page="getResourceResults" /-->
+                <RenderToIFrame :css-url="cssUrl">
+                    <Bootstrap4Pagination
+                        class="mb-0"
+                        :data="laravelData"
+                        :limit="limit"
+                        :show-disabled="showDisabled"
+                        :size="size"
+                        :align="align"
+                        @pagination-change-page="getResults"
+                        v-if="style === 'bootstrap4'"
+                    />
+                    <Bootstrap5Pagination
+                        class="mb-0"
+                        :data="laravelData"
+                        :limit="limit"
+                        :show-disabled="showDisabled"
+                        :size="size"
+                        :align="align"
+                        @pagination-change-page="getResults"
+                        v-if="style === 'bootstrap5'"
+                    />
+                </RenderToIFrame>
             </div>
         </div>
 
@@ -71,8 +84,9 @@
 </template>
 
 <script>
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import LaravelVuePagination from './LaravelVuePagination.vue';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import { Bootstrap4Pagination, Bootstrap5Pagination } from '@/lib';
+import RenderToIFrame from './components/RenderToIFrame';
 
 const dummyData = [
     { id: 1 },
@@ -99,17 +113,30 @@ const dummyData = [
 
 export default {
     components: {
-        'BootstrapPagination': LaravelVuePagination
+        RenderToIFrame,
+        Bootstrap4Pagination,
+        Bootstrap5Pagination
     },
 
     data () {
         return {
             laravelData: {},
             laravelResourceData: {},
+            style: 'bootstrap4',
             limit: 2,
             showDisabled: false,
             size: 'default',
             align: 'left'
+        }
+    },
+
+    computed:{
+        cssUrl() {
+            if (this.style === 'bootstrap5') {
+                return 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css';
+            }
+
+            return 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
         }
     },
 
@@ -168,7 +195,17 @@ export default {
             if (this.limit < 0) {
                 this.limit = 0;
             }
-        }
-    }
+        },
+    },
 }
 </script>
+
+<style scoped>
+iframe {
+    border: 0;
+    overflow: auto;
+    width: 100%;
+    height: 10rem;
+    background-color: transparent;
+}
+</style>
