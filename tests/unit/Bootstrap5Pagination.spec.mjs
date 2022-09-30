@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import LaravelVuePagination from '@/LaravelVuePagination.vue';
+import Bootstrap5Pagination from '@/Bootstrap5Pagination.vue';
 
 var exampleData = {
     current_page: 1,
@@ -57,7 +57,7 @@ var exampleResourceData = {
 };
 
 test('has correct DOM structure', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -69,7 +69,7 @@ test('has correct DOM structure', function () {
 });
 
 test('shows disabled links', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             showDisabled: true,
@@ -81,7 +81,7 @@ test('shows disabled links', function () {
 });
 
 test('does not show disabled links', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -98,7 +98,7 @@ test('has correct DOM structure with -1 limit on page 2', function () {
     exampleData.next_page_url = 'http://example.com/page/3';
     exampleData.prev_page_url = 'http://example.com/page/1';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             limit: -1,
@@ -116,7 +116,7 @@ test('has correct DOM structure with 1 link limit on page 5', function () {
     exampleData.next_page_url = 'http://example.com/page/6';
     exampleData.prev_page_url = 'http://example.com/page/4';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             limit: 1,
@@ -135,7 +135,7 @@ test('has correct DOM structure when on page 2', function () {
     exampleData.next_page_url = 'http://example.com/page/3';
     exampleData.prev_page_url = 'http://example.com/page/1';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -146,7 +146,7 @@ test('has correct DOM structure when on page 2', function () {
 });
 
 test('emits correct event', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -160,7 +160,7 @@ test('emits correct event', function () {
 });
 
 test('has correct DOM structure when using slots', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: { data: exampleData },
         slots: {
             'prev-nav': '<span class="custom-prev-nav">Previous</span>',
@@ -175,7 +175,7 @@ test('has correct DOM structure when using slots', function () {
 });
 
 test('has correct DOM structure for Laravel API Resource responses', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleResourceData,
         },
@@ -187,7 +187,7 @@ test('has correct DOM structure for Laravel API Resource responses', function ()
 });
 
 test('has correct size', function () {
-    let wrapper = mount(LaravelVuePagination, {
+    let wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             size: 'small',
@@ -198,7 +198,7 @@ test('has correct size', function () {
         'pagination-sm'
     );
 
-    wrapper = mount(LaravelVuePagination, {
+    wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             size: 'large',
@@ -211,7 +211,7 @@ test('has correct size', function () {
 });
 
 test('has correct align', function () {
-    let wrapper = mount(LaravelVuePagination, {
+    let wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             align: 'center',
@@ -222,7 +222,7 @@ test('has correct align', function () {
         'justify-content-center'
     );
 
-    wrapper = mount(LaravelVuePagination, {
+    wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             align: 'right',
