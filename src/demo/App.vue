@@ -85,7 +85,7 @@
 
 <script>
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-import { Bootstrap4Pagination, Bootstrap5Pagination } from '@/lib';
+import { Bootstrap4Pagination, Bootstrap5Pagination } from '../lib';
 import RenderToIFrame from './components/RenderToIFrame';
 
 const dummyData = [
