@@ -1,5 +1,5 @@
 <template>
-    <RenderlessLaravelVuePagination
+    <RenderlessPagination
         :data="data"
         :limit="limit"
         :show-disabled="showDisabled"
@@ -45,11 +45,11 @@
             </li>
 
         </ul>
-    </RenderlessLaravelVuePagination>
+    </RenderlessPagination>
 </template>
 
 <script>
-import RenderlessLaravelVuePagination from './RenderlessLaravelVuePagination.vue';
+import RenderlessPagination from './RenderlessPagination.vue';
 
 export default {
     inheritAttrs: false,
@@ -57,7 +57,7 @@ export default {
     emits: ['pagination-change-page'],
 
     components: {
-        RenderlessLaravelVuePagination
+        RenderlessPagination
     },
 
     props: {

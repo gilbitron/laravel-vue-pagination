@@ -19,10 +19,7 @@ export default defineConfig(({ mode }) => {
             },
             build: {
                 lib: {
-                    entry: path.resolve(
-                        __dirname,
-                        'src/LaravelVuePagination.vue'
-                    ),
+                    entry: path.resolve(__dirname, 'src/lib.js'),
                     name: 'LaravelVuePagination',
                     fileName: (format) => `laravel-vue-pagination.${format}.js`,
                 },
