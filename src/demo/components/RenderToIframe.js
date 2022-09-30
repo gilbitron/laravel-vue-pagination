@@ -7,12 +7,17 @@ export default {
             type: String,
             default: '',
         },
+        scriptUrl: {
+            type: String,
+            default: '',
+        },
     },
     setup(props, { slots }) {
         const iframeRef = ref(null);
         const iframeBody = ref(null);
         const iframeHead = ref(null);
         const iframeCSS = ref(null);
+        const iframeScript = ref(null);
         const iframeStyle = ref(null);
         let iframeApp = null;
 
@@ -41,8 +46,15 @@ export default {
             if (!iframeApp || !iframeRef.value) {
                 return;
             }
-            if (props.cssUrl) {
-                iframeCSS.value.href = props.cssUrl;
+            iframeCSS.value.href = props.cssUrl;
+            if (props.scriptUrl) {
+                iframeScript.value = document.createElement('script');
+                iframeScript.value.id = 'custom-script';
+                iframeScript.value.src = props.scriptUrl;
+                iframeHead.value.appendChild(iframeScript.value);
+            } else {
+                document.getElementById('custom-script')?.remove();
+                iframeScript.value = null;
             }
         });
         return () => h('iframe', { ref: iframeRef });

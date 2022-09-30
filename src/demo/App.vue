@@ -10,6 +10,7 @@
                     <select id="size" class="form-control" v-model="style">
                         <option value="bootstrap4">Bootstrap 4</option>
                         <option value="bootstrap5">Bootstrap 5</option>
+                        <option value="tailwind">Tailwind</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -45,7 +46,7 @@
 
         <div class="card bg-light">
             <div class="card-body p-5">
-                <RenderToIFrame :css-url="cssUrl">
+                <RenderToIFrame :css-url="cssUrl" :script-url="scriptUrl">
                     <Bootstrap4Pagination
                         class="mb-0"
                         :data="laravelData"
@@ -66,6 +67,12 @@
                         @pagination-change-page="getResults"
                         v-if="style === 'bootstrap5'"
                     />
+                    <TailwindPagination
+                        :data="laravelData"
+                        :limit="limit"
+                        @pagination-change-page="getResults"
+                        v-if="style === 'tailwind'"
+                    />
                 </RenderToIFrame>
             </div>
         </div>
@@ -85,7 +92,7 @@
 
 <script>
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-import { Bootstrap4Pagination, Bootstrap5Pagination } from '../lib';
+import { Bootstrap4Pagination, Bootstrap5Pagination, TailwindPagination } from '../lib';
 import RenderToIFrame from './components/RenderToIFrame';
 
 const dummyData = [
@@ -115,7 +122,8 @@ export default {
     components: {
         RenderToIFrame,
         Bootstrap4Pagination,
-        Bootstrap5Pagination
+        Bootstrap5Pagination,
+        TailwindPagination,
     },
 
     data () {
@@ -132,12 +140,22 @@ export default {
 
     computed:{
         cssUrl() {
+            if (this.style === 'tailwind') {
+                return '';
+            }
             if (this.style === 'bootstrap5') {
                 return 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css';
             }
 
             return 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
-        }
+        },
+        scriptUrl() {
+            if (this.style === 'tailwind') {
+                return 'https://cdn.tailwindcss.com';
+            }
+
+            return '';
+        },
     },
 
     mounted () {
