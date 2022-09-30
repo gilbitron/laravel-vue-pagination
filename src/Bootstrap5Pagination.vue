@@ -2,9 +2,6 @@
     <RenderlessPagination
         :data="data"
         :limit="limit"
-        :show-disabled="showDisabled"
-        :size="size"
-        :align="align"
         @pagination-change-page="onPaginationChangePage"
         v-slot="slotProps"
     >
@@ -12,14 +9,14 @@
             v-bind="$attrs"
             class="pagination"
             :class="{
-                'pagination-sm': slotProps.size == 'small',
-                'pagination-lg': slotProps.size == 'large',
-                'justify-content-center': slotProps.align == 'center',
-                'justify-content-end': slotProps.align == 'right'
+                'pagination-sm': size == 'small',
+                'pagination-lg': size == 'large',
+                'justify-content-center': align == 'center',
+                'justify-content-end': align == 'right'
             }"
             v-if="slotProps.computed.total > slotProps.computed.perPage">
 
-            <li class="page-item pagination-prev-nav" :class="{'disabled': !slotProps.computed.prevPageUrl}" v-if="slotProps.computed.prevPageUrl || slotProps.showDisabled">
+            <li class="page-item pagination-prev-nav" :class="{'disabled': !slotProps.computed.prevPageUrl}" v-if="slotProps.computed.prevPageUrl || showDisabled">
                 <a class="page-link" href="#" aria-label="Previous" :tabindex="!slotProps.computed.prevPageUrl && -1" v-on="slotProps.prevButtonEvents">
                     <slot name="prev-nav">
                         <span aria-hidden="true">&laquo;</span>
@@ -33,7 +30,7 @@
                 </a>
             </li>
 
-            <li class="page-item pagination-next-nav" :class="{'disabled': !slotProps.computed.nextPageUrl}" v-if="slotProps.computed.nextPageUrl || slotProps.showDisabled">
+            <li class="page-item pagination-next-nav" :class="{'disabled': !slotProps.computed.nextPageUrl}" v-if="slotProps.computed.nextPageUrl || showDisabled">
                 <a class="page-link" href="#" aria-label="Next" :tabindex="!slotProps.computed.nextPageUrl && -1" v-on="slotProps.nextButtonEvents">
                     <slot name="next-nav">
                         <span aria-hidden="true">&raquo;</span>
