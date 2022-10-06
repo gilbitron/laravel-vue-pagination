@@ -1,5 +1,9 @@
 <script>
 export default {
+    compatConfig: {
+      MODE: 3
+    },
+
     emits: ['pagination-change-page'],
 
     props: {
