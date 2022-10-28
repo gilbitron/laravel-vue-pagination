@@ -29,8 +29,8 @@
                 href="#"
                 class="relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20"
                 :class="{
-                    'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': !slotProps.computed.currentPage,
-                    'z-10 bg-indigo-50 border-indigo-500 text-indigo-600': slotProps.computed.currentPage
+                    'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': page != slotProps.computed.currentPage,
+                    'z-30 bg-indigo-50 border-indigo-500 text-indigo-600': page == slotProps.computed.currentPage
                 }"
                 :aria-current="slotProps.computed.currentPage ? 'page' : null"
                 v-for="(page, key) in slotProps.computed.pageRange"
