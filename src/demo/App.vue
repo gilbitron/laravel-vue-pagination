@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import './tailwind.css';
 import { Bootstrap4Pagination, Bootstrap5Pagination, TailwindPagination } from '../lib';
 import RenderToIFrame from './components/RenderToIFrame';
 
@@ -148,13 +148,6 @@ export default {
             }
 
             return 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
-        },
-        scriptUrl() {
-            if (this.style === 'tailwind') {
-                return 'https://cdn.tailwindcss.com';
-            }
-
-            return '';
         },
     },
 

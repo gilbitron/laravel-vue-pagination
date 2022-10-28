@@ -1,13 +1,9 @@
-import { h, ref, createApp, onMounted, onBeforeUpdate } from 'vue';
+import {h, ref, createApp, onMounted, onBeforeUpdate} from 'vue';
 
 export default {
     name: 'RenderToIFrame',
     props: {
         cssUrl: {
-            type: String,
-            default: '',
-        },
-        scriptUrl: {
             type: String,
             default: '',
         },
@@ -17,11 +13,12 @@ export default {
         const iframeBody = ref(null);
         const iframeHead = ref(null);
         const iframeCSS = ref(null);
-        const iframeScript = ref(null);
         const iframeStyle = ref(null);
         let iframeApp = null;
 
-        onMounted(() => {
+        onMounted(async () => {
+            const tailwindCss = await import('../tailwind.css');
+
             iframeBody.value = iframeRef.value.contentDocument.body;
             iframeHead.value = iframeRef.value.contentDocument.head;
             const el = document.createElement('div');
@@ -32,7 +29,7 @@ export default {
             iframeHead.value.appendChild(iframeCSS.value);
             iframeStyle.value = document.createElement('style');
             iframeStyle.value.innerHTML =
-                'body { margin: 0; padding: 10px; background: #f8f9fa; }';
+                'body { margin: 0; padding: 10px; background: #f8f9fa; }' + tailwindCss.default;
             iframeHead.value.appendChild(iframeStyle.value);
 
             iframeApp = createApp({
@@ -42,21 +39,14 @@ export default {
                 },
             }).mount(el);
         });
+
         onBeforeUpdate(() => {
             if (!iframeApp || !iframeRef.value) {
                 return;
             }
             iframeCSS.value.href = props.cssUrl;
-            if (props.scriptUrl) {
-                iframeScript.value = document.createElement('script');
-                iframeScript.value.id = 'custom-script';
-                iframeScript.value.src = props.scriptUrl;
-                iframeHead.value.appendChild(iframeScript.value);
-            } else {
-                document.getElementById('custom-script')?.remove();
-                iframeScript.value = null;
-            }
         });
+
         return () => h('iframe', { ref: iframeRef });
     },
 };
