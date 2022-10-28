@@ -46,7 +46,7 @@
 
         <div class="card bg-light">
             <div class="card-body p-5">
-                <RenderToIFrame :css-url="cssUrl" :script-url="scriptUrl">
+                <RenderToIFrame :css-url="cssUrl">
                     <Bootstrap4Pagination
                         class="mb-0"
                         :data="laravelData"
