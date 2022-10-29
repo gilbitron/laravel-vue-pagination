@@ -11,48 +11,53 @@
             aria-label="Pagination"
             v-if="slotProps.computed.total > slotProps.computed.perPage"
         >
-            <a
-                href="#"
-                class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+            <button
+                class="relative inline-flex items-center rounded-l-md border px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                :class="itemClasses"
+                :disabled="!slotProps.computed.prevPageUrl"
                 v-on="slotProps.prevButtonEvents"
-                v-if="slotProps.computed.prevPageUrl"
             >
                 <slot name="prev-nav">
                     <span class="sr-only">Previous</span>
-                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    <svg
+                        class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
                     </svg>
                 </slot>
-            </a>
+            </button>
 
-            <a
-                href="#"
+            <button
                 class="relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20"
-                :class="{
-                    'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': page != slotProps.computed.currentPage,
-                    'z-30 bg-indigo-50 border-indigo-500 text-indigo-600': page == slotProps.computed.currentPage
-                }"
+                :class="[
+                    page == slotProps.computed.currentPage ? activeClasses : itemClasses,
+                    page == slotProps.computed.currentPage ? 'z-30' : '',
+                ]"
                 :aria-current="slotProps.computed.currentPage ? 'page' : null"
                 v-for="(page, key) in slotProps.computed.pageRange"
                 :key="key"
                 v-on="slotProps.pageButtonEvents(page)"
             >
                 {{ page }}
-            </a>
+            </button>
 
-            <a
-                href="#"
-                class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+            <button
+                class="relative inline-flex items-center rounded-r-md border px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                :class="itemClasses"
+                :disabled="!slotProps.computed.nextPageUrl"
                 v-on="slotProps.nextButtonEvents"
-                v-if="slotProps.computed.nextPageUrl"
             >
                 <slot name="next-nav">
                     <span class="sr-only">Next</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    <svg
+                        class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                     </svg>
                 </slot>
-            </a>
+            </button>
         </nav>
     </RenderlessPagination>
 </template>
@@ -78,10 +83,27 @@ export default {
             type: Number,
             default: 0
         },
+        itemClasses: {
+            type: Array,
+            default: () => [
+                'bg-white',
+                'text-gray-500',
+                'border-gray-300',
+                'hover:bg-gray-50',
+            ],
+        },
+        activeClasses: {
+            type: Array,
+            default: () => [
+                'bg-blue-50',
+                'border-blue-500',
+                'text-blue-600',
+            ],
+        },
     },
 
     methods: {
-        onPaginationChangePage (page) {
+        onPaginationChangePage(page) {
             this.$emit('pagination-change-page', page);
         }
     }
