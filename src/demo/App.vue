@@ -1,41 +1,32 @@
 <template>
     <div class="container mt-5">
         <h1 class="mb-3">Laravel Vue Pagination Demo</h1>
-        <p class="mb-5">A Vue.js pagination component for Laravel paginators that works with Bootstrap.</p>
-
+        <p class="mb-5">A Vue.js pagination component for Laravel paginators that works with Bootstrap &amp; Tailwind.</p>
         <form class="mb-5" @submit.prevent>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="style">Style</label><br>
-                    <select id="size" class="form-control" v-model="style">
-                        <option value="bootstrap4">Bootstrap 4</option>
-                        <option value="bootstrap5">Bootstrap 5</option>
-                        <option value="tailwind">Tailwind</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="limit">Limit</label><br>
+            <div class="row mb-3">
+                <div class="col" v-if="style !== 'tailwind'">
+                    <label class="form-label" for="limit">Limit</label><br>
                     <input type="number" id="limit" class="form-control" v-model="limit">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="size">Size</label><br>
-                    <select id="size" class="form-control" v-model="size">
+                <div class="col">
+                    <label class="form-label" for="size">Size</label><br>
+                    <select id="size" class="form-select" v-model="size">
                         <option value="small">Small</option>
                         <option value="default">Default</option>
                         <option value="large">Large</option>
                     </select>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="align">Align</label><br>
-                    <select id="align" class="form-control" v-model="align">
+                <div class="col">
+                    <label class="form-label" for="align">Align</label><br>
+                    <select id="align" class="form-select" v-model="align">
                         <option value="left">Left</option>
                         <option value="center">Center</option>
                         <option value="right">Right</option>
                     </select>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="row">
+                <div class="col">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="show-disabled" v-model="showDisabled">
                         <label class="form-check-label" for="show-disabled">Show Disabled</label>
@@ -44,9 +35,11 @@
             </div>
         </form>
 
-        <div class="card bg-light">
+        <div class="card">
             <div class="card-body p-5">
-                <RenderToIFrame :css-url="cssUrl">
+                <h3 class="mb-2">Bootstrap 4</h3>
+                <RenderToIFrame>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
                     <Bootstrap4Pagination
                         class="mb-0"
                         :data="laravelData"
@@ -55,8 +48,12 @@
                         :size="size"
                         :align="align"
                         @pagination-change-page="getResults"
-                        v-if="style === 'bootstrap4'"
                     />
+                </RenderToIFrame>
+              
+                <h3 class="mt-3 mb-2">Bootstrap 5</h3>
+                <RenderToIFrame>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
                     <Bootstrap5Pagination
                         class="mb-0"
                         :data="laravelData"
@@ -65,13 +62,15 @@
                         :size="size"
                         :align="align"
                         @pagination-change-page="getResults"
-                        v-if="style === 'bootstrap5'"
                     />
+                </RenderToIFrame>
+
+                <h3 class="mt-3 mb-2">Tailwind CSS</h3>
+                <RenderToIFrame :is-tailwind="true">
                     <TailwindPagination
                         :data="laravelData"
                         :limit="limit"
                         @pagination-change-page="getResults"
-                        v-if="style === 'tailwind'"
                     />
                 </RenderToIFrame>
             </div>
@@ -82,7 +81,7 @@
                 <div class="col-md-9">
                     <p>Laravel Vue Pagination was created by <a href="https://gilbitron.me">Gilbert Pellegrom</a> from <a href="https://dev7studios.co">Dev7studios</a>. Released under the MIT license.</p>
                 </div>
-                <div class="col-md-3 text-right">
+                <div class="col-md-3 text-end">
                     <p><a href="https://github.com/gilbitron/laravel-vue-pagination">GitHub</a></p>
                 </div>
             </div>
@@ -91,7 +90,7 @@
 </template>
 
 <script>
-import './tailwind.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Bootstrap4Pagination, Bootstrap5Pagination, TailwindPagination } from '../lib';
 import RenderToIFrame from './components/RenderToIFrame';
 
@@ -136,19 +135,6 @@ export default {
             size: 'default',
             align: 'left'
         }
-    },
-
-    computed:{
-        cssUrl() {
-            if (this.style === 'tailwind') {
-                return '';
-            }
-            if (this.style === 'bootstrap5') {
-                return 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css';
-            }
-
-            return 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
-        },
     },
 
     mounted () {
@@ -216,7 +202,7 @@ iframe {
     border: 0;
     overflow: auto;
     width: 100%;
-    height: 10rem;
+    height: 4rem;
     background-color: transparent;
 }
 </style>

@@ -34,11 +34,10 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.3",
     "@vitejs/plugin-vue": "^2.2.0",
     "@vue/test-utils": "^2.0.0-rc.17",
     "autoprefixer": "^10.4.13",
-    "bootstrap": "^4",
+    "bootstrap": "^5.2.2",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
