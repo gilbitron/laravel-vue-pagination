@@ -1,0 +1,4 @@
+{
+  "buildCommand": "yarn docs:build",
+  "outputDirectory": "docs/.vuepress/dist"
+}
