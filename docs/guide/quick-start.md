@@ -35,5 +35,5 @@ A short explanation of the above example:
 
 1. We use the `getResults()` method to fetch some data from a Laravel application. This method is called when the component is created. The initial data could also be passed as a prop to the component.
 1. We use the `v-for` directive to loop through the data and display it on the page.
-1. We use the `<TailwindPagination>` component to display the pagination links. We use the `:data` [prop](/api/global-props.html) to pass the paginator data from Laravel to the pagination component.
-1. We use the `@pagination-change-page` [event](/api/events.html) to call the `getResults()` method when the user changes page. This event passes the new page number as a parameter.
+1. We use the `<TailwindPagination>` component to display the pagination links. We use the `:data` [prop](/guide/api/props.html) to pass the paginator data from Laravel to the pagination component.
+1. We use the `@pagination-change-page` [event](/guide/api/events.html) to call the `getResults()` method when the user changes page. This event passes the new page number as a parameter.

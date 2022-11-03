@@ -1,4 +1,4 @@
-# Global Props
+# Props
 
 These props are available on all components.
 
