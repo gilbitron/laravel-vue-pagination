@@ -25,12 +25,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:app": "vite build --mode app --outDir app",
     "preview": "vite preview",
-    "lint": "eslint --fix src",
-    "test": "vite-jest --no-cache",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "lint": "eslint --fix src",
+    "test": "vite-jest --no-cache"
   },
   "dependencies": {
     "vue": "^3.2.25"

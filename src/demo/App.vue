@@ -1,7 +1,6 @@
 <template>
     <div class="container mt-5">
         <h1 class="mb-3">Laravel Vue Pagination Demo</h1>
-        <p class="mb-5">A Vue.js pagination component for Laravel paginators that works with Bootstrap &amp; Tailwind.</p>
         <form class="mb-5" @submit.prevent>
             <div class="row mb-3">
                 <div class="col" v-if="style !== 'tailwind'">
@@ -75,17 +74,6 @@
                 </RenderToIFrame>
             </div>
         </div>
-
-        <footer class="my-5 text-muted small">
-            <div class="row">
-                <div class="col-md-9">
-                    <p>Laravel Vue Pagination was created by <a href="https://gilbitron.me">Gilbert Pellegrom</a> from <a href="https://dev7studios.co">Dev7studios</a>. Released under the MIT license.</p>
-                </div>
-                <div class="col-md-3 text-end">
-                    <p><a href="https://github.com/gilbitron/laravel-vue-pagination">GitHub</a></p>
-                </div>
-            </div>
-        </footer>
     </div>
 </template>
 
