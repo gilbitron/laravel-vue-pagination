@@ -32,11 +32,11 @@
     "test": "vite-jest --no-cache"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.41"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
-    "@vue/test-utils": "^2.0.0-rc.17",
+    "@vue/test-utils": "^2.2.1",
     "autoprefixer": "^10.4.13",
     "bootstrap": "^5.2.2",
     "eslint": "^8.8.0",
