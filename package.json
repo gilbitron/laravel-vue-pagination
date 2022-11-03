@@ -35,7 +35,7 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
+    "@vitejs/plugin-vue": "^3.2.0",
     "@vue/test-utils": "^2.0.0-rc.17",
     "autoprefixer": "^10.4.13",
     "bootstrap": "^5.2.2",
@@ -47,7 +47,7 @@
     "jest-environment-jsdom": "^27.5.1",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.1",
-    "vite": "^3.2.1",
+    "vite": "^3.2.2",
     "vite-jest": "^0.1.4",
     "vuepress": "^2.0.0-beta.53"
   }
