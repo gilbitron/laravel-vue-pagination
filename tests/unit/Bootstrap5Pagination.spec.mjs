@@ -65,7 +65,7 @@ test('has correct DOM structure', function () {
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(7);
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('active');
 });
 
 test('shows disabled links', function () {
@@ -75,7 +75,7 @@ test('shows disabled links', function () {
             showDisabled: true,
         },
     });
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('disabled');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('disabled');
     expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(-1);
     expect(wrapper.findAll('.disabled').length).toEqual(1);
 });
@@ -86,7 +86,7 @@ test('does not show disabled links', function () {
             data: exampleData,
         },
     });
-    expect(wrapper.findAll('li').at(0).element.classList).not.toContain(
+    expect([...wrapper.findAll('li').at(0).element.classList]).not.toContain(
         'disabled'
     );
     expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(0);
@@ -125,7 +125,7 @@ test('has correct DOM structure with 1 link limit on page 5', function () {
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(9);
-    expect(wrapper.findAll('li').at(4).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(4).element.classList]).toContain('active');
 });
 
 test('has correct DOM structure when on page 2', function () {
@@ -142,7 +142,7 @@ test('has correct DOM structure when on page 2', function () {
     });
 
     expect(wrapper.findAll('li').length).toBe(8);
-    expect(wrapper.findAll('li').at(2).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(2).element.classList]).toContain('active');
 });
 
 test('emits correct event', function () {
@@ -183,7 +183,7 @@ test('has correct DOM structure for Laravel API Resource responses', function ()
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(7);
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('active');
 });
 
 test('has correct size', function () {
@@ -194,7 +194,7 @@ test('has correct size', function () {
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'pagination-sm'
     );
 
@@ -205,7 +205,7 @@ test('has correct size', function () {
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'pagination-lg'
     );
 });
@@ -218,7 +218,7 @@ test('has correct align', function () {
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'justify-content-center'
     );
 
@@ -229,7 +229,7 @@ test('has correct align', function () {
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'justify-content-end'
     );
 });
