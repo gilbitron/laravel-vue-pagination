@@ -42,7 +42,7 @@
 
 <script>
 import { Bootstrap4Pagination, Bootstrap5Pagination, TailwindPagination } from '@/lib';
-import RenderToIFrame from '@/demo/components/RenderToIFrame';
+import RenderToIFrame from '@/demo/components/RenderToIFrame.js';
 
 const dummyData = [
     { id: 1 },
