@@ -80,7 +80,7 @@
 <script>
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Bootstrap4Pagination, Bootstrap5Pagination, TailwindPagination } from '../lib';
-import RenderToIFrame from './components/RenderToIFrame.js';
+import RenderToIFrame from './components/RenderToIframe';
 
 const dummyData = [
     { id: 1 },
