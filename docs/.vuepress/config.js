@@ -36,6 +36,7 @@ export default defineUserConfig({
                     children: [
                         '/guide/install.md',
                         '/guide/quick-start.md',
+                        '/guide/laravel-paginators.md',
                     ],
                 },
                 {
