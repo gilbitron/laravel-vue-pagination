@@ -57,6 +57,13 @@ export default defineUserConfig({
                         '/guide/api/slots.md',
                     ],
                 },
+                {
+                    text: 'Advanced',
+                    collapsable: false,
+                    children: [
+                        '/guide/advanced/renderless-pagination.md',
+                    ],
+                },
             ],
         },
     }),
