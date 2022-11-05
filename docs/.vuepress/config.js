@@ -3,6 +3,11 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { fileURLToPath } from 'url';
 
+let head = [];
+if (process.env.NODE_ENV === 'production') {
+    head.push(['script', { src: 'https://cdn.usefathom.com/script.js', 'data-spa': 'auto', 'data-site': 'DIOQPXCP', 'defer': true }]);
+}
+
 export default defineUserConfig({
     bundler: viteBundler({
         viteOptions: {
@@ -16,6 +21,7 @@ export default defineUserConfig({
     lang: 'en-US',
     title: 'Laravel Vue Pagination',
     description: 'A Vue.js pagination component for Laravel',
+    head: head,
     theme: defaultTheme({
         repo: 'https://github.com/gilbitron/laravel-vue-pagination',
         navbar: [
