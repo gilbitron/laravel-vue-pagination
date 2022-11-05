@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import LaravelVuePagination from '@/LaravelVuePagination.vue';
+import Bootstrap5Pagination from '@/Bootstrap5Pagination.vue';
 
 var exampleData = {
     current_page: 1,
@@ -57,7 +57,7 @@ var exampleResourceData = {
 };
 
 test('has correct DOM structure', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -65,28 +65,28 @@ test('has correct DOM structure', function () {
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(7);
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('active');
 });
 
 test('shows disabled links', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             showDisabled: true,
         },
     });
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('disabled');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('disabled');
     expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(-1);
     expect(wrapper.findAll('.disabled').length).toEqual(1);
 });
 
 test('does not show disabled links', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
     });
-    expect(wrapper.findAll('li').at(0).element.classList).not.toContain(
+    expect([...wrapper.findAll('li').at(0).element.classList]).not.toContain(
         'disabled'
     );
     expect(wrapper.findAll('a').at(0).element.tabIndex).toBe(0);
@@ -98,7 +98,7 @@ test('has correct DOM structure with -1 limit on page 2', function () {
     exampleData.next_page_url = 'http://example.com/page/3';
     exampleData.prev_page_url = 'http://example.com/page/1';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             limit: -1,
@@ -116,7 +116,7 @@ test('has correct DOM structure with 1 link limit on page 5', function () {
     exampleData.next_page_url = 'http://example.com/page/6';
     exampleData.prev_page_url = 'http://example.com/page/4';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             limit: 1,
@@ -125,7 +125,7 @@ test('has correct DOM structure with 1 link limit on page 5', function () {
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(9);
-    expect(wrapper.findAll('li').at(4).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(4).element.classList]).toContain('active');
 });
 
 test('has correct DOM structure when on page 2', function () {
@@ -135,18 +135,18 @@ test('has correct DOM structure when on page 2', function () {
     exampleData.next_page_url = 'http://example.com/page/3';
     exampleData.prev_page_url = 'http://example.com/page/1';
 
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
     });
 
     expect(wrapper.findAll('li').length).toBe(8);
-    expect(wrapper.findAll('li').at(2).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(2).element.classList]).toContain('active');
 });
 
 test('emits correct event', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
         },
@@ -160,7 +160,7 @@ test('emits correct event', function () {
 });
 
 test('has correct DOM structure when using slots', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: { data: exampleData },
         slots: {
             'prev-nav': '<span class="custom-prev-nav">Previous</span>',
@@ -175,7 +175,7 @@ test('has correct DOM structure when using slots', function () {
 });
 
 test('has correct DOM structure for Laravel API Resource responses', function () {
-    const wrapper = mount(LaravelVuePagination, {
+    const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleResourceData,
         },
@@ -183,53 +183,53 @@ test('has correct DOM structure for Laravel API Resource responses', function ()
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(wrapper.findAll('li').length).toBe(7);
-    expect(wrapper.findAll('li').at(0).element.classList).toContain('active');
+    expect([...wrapper.findAll('li').at(0).element.classList]).toContain('active');
 });
 
 test('has correct size', function () {
-    let wrapper = mount(LaravelVuePagination, {
+    let wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             size: 'small',
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'pagination-sm'
     );
 
-    wrapper = mount(LaravelVuePagination, {
+    wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             size: 'large',
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'pagination-lg'
     );
 });
 
 test('has correct align', function () {
-    let wrapper = mount(LaravelVuePagination, {
+    let wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             align: 'center',
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'justify-content-center'
     );
 
-    wrapper = mount(LaravelVuePagination, {
+    wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
             align: 'right',
         },
     });
 
-    expect(wrapper.find('.pagination').element.classList).toContain(
+    expect([...wrapper.find('.pagination').element.classList]).toContain(
         'justify-content-end'
     );
 });
