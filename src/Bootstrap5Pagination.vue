@@ -46,6 +46,10 @@
 import RenderlessPagination from './RenderlessPagination.vue';
 
 export default {
+    compatConfig: {
+        MODE: 3
+    },
+  
     inheritAttrs: false,
 
     emits: ['pagination-change-page'],
