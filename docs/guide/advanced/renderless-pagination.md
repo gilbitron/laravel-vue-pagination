@@ -11,6 +11,7 @@ Below is an example of how you might use the `RenderlessPagination` component to
     <RenderlessPagination
         :data="data"
         :limit="limit"
+        :keep-length="keepLength"
         @pagination-change-page="onPaginationChangePage"
         v-slot="slotProps"
     >
@@ -70,6 +71,10 @@ export default {
             type: Number,
             default: 0
         },
+        keepLength: {
+            type: Boolean,
+            default: false
+        },
     },
 
     methods: {
@@ -91,6 +96,10 @@ The `data` prop that was passed to the `RenderlessPagination` component.
 ### limit
 
 The `limit` prop that was passed to the `RenderlessPagination` component.
+
+### keepLength
+
+The `keepLength` prop that was passed to the `RenderlessPagination` component.
 
 ### computed
 

@@ -2,6 +2,7 @@
     <RenderlessPagination
         :data="data"
         :limit="limit"
+        :keep-length="keepLength"
         @pagination-change-page="onPaginationChangePage"
         v-slot="slotProps"
     >
@@ -68,6 +69,10 @@ export default {
             default: 0
         },
         showDisabled: {
+            type: Boolean,
+            default: false
+        },
+        keepLength: {
             type: Boolean,
             default: false
         },
