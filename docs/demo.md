@@ -8,6 +8,7 @@
         class="mb-0"
         :data="laravelData"
         :limit="limit"
+        :keep-length="keepLength"
         :show-disabled="showDisabled"
         :size="size"
         :align="align"
@@ -23,6 +24,7 @@
         class="mb-0"
         :data="laravelData"
         :limit="limit"
+        :keep-length="keepLength"
         :show-disabled="showDisabled"
         :size="size"
         :align="align"
@@ -36,6 +38,7 @@
     <TailwindPagination
         :data="laravelData"
         :limit="limit"
+        :keep-length="keepLength"
         @pagination-change-page="getResults"
     />
 </RenderToIFrame>
@@ -81,6 +84,7 @@ export default {
             laravelResourceData: {},
             style: 'bootstrap4',
             limit: 2,
+            keepLength: false,
             showDisabled: false,
             size: 'default',
             align: 'left'
@@ -142,6 +146,9 @@ export default {
             if (this.limit < 0) {
                 this.limit = 0;
             }
+        },
+        keepLength (newVal) {
+            this.keepLength = Boolean(newVal);
         },
     },
 }

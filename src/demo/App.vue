@@ -27,6 +27,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="keep-length" v-model="keepLength">
+                        <label class="form-check-label" for="keep-length">Keep Length</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="show-disabled" v-model="showDisabled">
                         <label class="form-check-label" for="show-disabled">Show Disabled</label>
                     </div>
@@ -43,6 +51,7 @@
                         class="mb-0"
                         :data="laravelData"
                         :limit="limit"
+                        :keep-length="keepLength"
                         :show-disabled="showDisabled"
                         :size="size"
                         :align="align"
@@ -57,6 +66,7 @@
                         class="mb-0"
                         :data="laravelData"
                         :limit="limit"
+                        :keep-length="keepLength"
                         :show-disabled="showDisabled"
                         :size="size"
                         :align="align"
@@ -69,6 +79,7 @@
                     <TailwindPagination
                         :data="laravelData"
                         :limit="limit"
+                        :keep-length="keepLength"
                         @pagination-change-page="getResults"
                     />
                 </RenderToIFrame>
@@ -119,6 +130,7 @@ export default {
             laravelResourceData: {},
             style: 'bootstrap4',
             limit: 2,
+            keepLength: false,
             showDisabled: false,
             size: 'default',
             align: 'left'
@@ -180,6 +192,9 @@ export default {
             if (this.limit < 0) {
                 this.limit = 0;
             }
+        },
+        keepLength (newVal) {
+            this.keepLength = Boolean(newVal);
         },
     },
 }

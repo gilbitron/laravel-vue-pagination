@@ -11,6 +11,10 @@ export default {
             type: Number,
             default: 0
         },
+        keepLength: {
+            type: Boolean,
+            default: false
+        },
     },
 
     computed: {
@@ -57,16 +61,32 @@ export default {
             }
 
             var current = this.currentPage;
+            var size = this.keepLength;
             var last = this.lastPage;
             var delta = this.limit;
             var left = current - delta;
-            var right = current + delta + 1;
+            var right = current + delta;
+            var leftPad = (delta + 2) * 2;
+            var rightPad = ((delta + 2) * 2) - 1;
             var range = [];
             var pages = [];
             var l;
 
             for (var i = 1; i <= last; i++) {
-                if (i === 1 || i === last || (i >= left && i < right)) {
+                // Item is first or last
+                if (i === 1 || i === last) {
+                    range.push(i);
+                }
+                // Item is within the delta
+                else if (i >= left && i <= right) {
+                    range.push(i);
+                }
+                // Item is before max left padding
+                else if (size && i < leftPad && current < leftPad - 2) {
+                    range.push(i);
+                }
+                // Item is after max right padding
+                else if (size && i > last - rightPad && current > last - rightPad + 2) {
                     range.push(i);
                 }
             }
