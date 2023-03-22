@@ -18,4 +18,4 @@ Limit of pages to be rendered. `0` shows all pages (default). `-1` will hide num
 
 * `Boolean` (optional)
 
-When `true`, the pagination component will keep the same length regardless of the position of the page number. This is useful when you want to keep the pagination component always the same size and not vary at the first or last pages. It does uses the `limit` to determine the length of the pagination component.
+When `true`, the pagination component will keep the same length regardless of the position of the page number. This is useful when you want to keep the pagination component always the same size and not vary at the first or last pages. The `limit` prop is used to determine the length of the pagination.
