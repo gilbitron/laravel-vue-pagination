@@ -146,6 +146,18 @@ test('does not emit event on current page', function () {
     expect(event).toBeUndefined();
 });
 
+test('current page button is disabled', function () {
+    exampleData.current_page = 1;
+    const wrapper = mount(TailwindPagination, {
+        props: {
+            data: exampleData,
+        },
+    });
+
+    const button = wrapper.findAll('button').at(1);
+    expect(button.attributes('disabled')).toBe('');
+});
+
 test('has correct DOM structure when using slots', function () {
     const wrapper = mount(TailwindPagination, {
         props: { data: exampleData },

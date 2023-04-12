@@ -39,6 +39,7 @@
                 v-for="(page, key) in slotProps.computed.pageRange"
                 :key="key"
                 v-on="slotProps.pageButtonEvents(page)"
+                :disabled="page === slotProps.computed.currentPage"
             >
                 {{ page }}
             </button>
@@ -70,7 +71,7 @@ export default {
     compatConfig: {
         MODE: 3
     },
-  
+
     inheritAttrs: false,
 
     emits: ['pagination-change-page'],
