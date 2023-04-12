@@ -146,6 +146,7 @@ test('has correct DOM structure when on page 2', function () {
 });
 
 test('emits correct event', function () {
+    exampleData.current_page = 1;
     const wrapper = mount(Bootstrap5Pagination, {
         props: {
             data: exampleData,
@@ -157,6 +158,20 @@ test('emits correct event', function () {
     const event = wrapper.emitted('pagination-change-page');
     expect(event).toHaveLength(1);
     expect(event[0]).toEqual([2]);
+});
+
+test('does not emit event on current page', function () {
+    exampleData.current_page = 1;
+    const wrapper = mount(Bootstrap5Pagination, {
+        props: {
+            data: exampleData,
+        },
+    });
+
+    wrapper.findAll('li').at(1).find('a').trigger('click');
+
+    const event = wrapper.emitted('pagination-change-page');
+    expect(event).toBeUndefined();
 });
 
 test('has correct DOM structure when using slots', function () {
