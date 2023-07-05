@@ -5,7 +5,7 @@ import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
 <template>
   <ParentLayout>
     <template #sidebar-bottom>
-      <a href="https://devmail.email" target="_blank" class="devmail">
+      <a href="https://devmail.email/?utm_campaign=laravel-vue-pagination&utm_source=laravel-vue-pagination" target="_blank" class="devmail">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="3210.5263157894738"
              height="892.6315789473686" viewBox="0 0 3210.5263157894738 892.6315789473686">
           <g transform="scale(10.526315789473685) translate(10, 10)">
