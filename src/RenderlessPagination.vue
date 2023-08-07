@@ -115,7 +115,7 @@ export default {
             this.selectPage((this.currentPage + 1));
         },
         selectPage (page) {
-            if (page === '...') {
+            if (page === '...' || page === this.currentPage) {
                 return;
             }
 

@@ -118,6 +118,7 @@ test('has correct DOM structure when on page 2', function () {
 });
 
 test('emits correct event', function () {
+    exampleData.current_page = 1;
     const wrapper = mount(TailwindPagination, {
         props: {
             data: exampleData,
@@ -129,6 +130,32 @@ test('emits correct event', function () {
     const event = wrapper.emitted('pagination-change-page');
     expect(event).toHaveLength(1);
     expect(event[0]).toEqual([2]);
+});
+
+test('does not emit event on current page', function () {
+    exampleData.current_page = 1;
+    const wrapper = mount(TailwindPagination, {
+        props: {
+            data: exampleData,
+        },
+    });
+
+    wrapper.findAll('button').at(1).trigger('click');
+
+    const event = wrapper.emitted('pagination-change-page');
+    expect(event).toBeUndefined();
+});
+
+test('current page button is disabled', function () {
+    exampleData.current_page = 1;
+    const wrapper = mount(TailwindPagination, {
+        props: {
+            data: exampleData,
+        },
+    });
+
+    const button = wrapper.findAll('button').at(1);
+    expect(button.attributes('disabled')).toBe('');
 });
 
 test('has correct DOM structure when using slots', function () {
