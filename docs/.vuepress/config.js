@@ -4,6 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { fileURLToPath } from 'url';
 
 let head = [];
+head.push(['meta', { name: 'google-adsense-account', content: 'ca-pub-5665154361628767' }]);
 if (process.env.NODE_ENV === 'production') {
     head.push(['script', { src: 'https://cdn.usefathom.com/script.js', 'data-spa': 'auto', 'data-site': 'DIOQPXCP', 'defer': true }]);
 }
