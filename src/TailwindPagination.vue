@@ -8,12 +8,12 @@
     >
         <nav
             v-bind="$attrs"
-            class="isolate inline-flex -space-x-px rounded-md shadow-sm"
+            class="inline-flex -space-x-px rounded-md shadow-sm isolate ltr:flex-row rtl:flex-row-reverse"
             aria-label="Pagination"
             v-if="slotProps.computed.total > slotProps.computed.perPage"
         >
             <button
-                class="relative inline-flex items-center rounded-l-md border px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                class="relative inline-flex items-center px-2 py-2 text-sm font-medium border rounded-l-md focus:z-20 disabled:opacity-50"
                 :class="itemClasses"
                 :disabled="!slotProps.computed.prevPageUrl"
                 v-on="slotProps.prevButtonEvents"
@@ -21,7 +21,7 @@
                 <slot name="prev-nav">
                     <span class="sr-only">Previous</span>
                     <svg
-                        class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor"
                     >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
@@ -30,7 +30,7 @@
             </button>
 
             <button
-                class="relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20"
+                class="relative inline-flex items-center px-4 py-2 text-sm font-medium border focus:z-20"
                 :class="[
                     page == slotProps.computed.currentPage ? activeClasses : itemClasses,
                     page == slotProps.computed.currentPage ? 'z-30' : '',
@@ -45,7 +45,7 @@
             </button>
 
             <button
-                class="relative inline-flex items-center rounded-r-md border px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                class="relative inline-flex items-center px-2 py-2 text-sm font-medium border rounded-r-md focus:z-20 disabled:opacity-50"
                 :class="itemClasses"
                 :disabled="!slotProps.computed.nextPageUrl"
                 v-on="slotProps.nextButtonEvents"
