@@ -50,10 +50,10 @@ test('parses paginate data', function () {
 
     expect(wrapper.vm.isApiResource).toEqual(false);
     expect(wrapper.vm.currentPage).toEqual(paginateData.current_page);
-    expect(wrapper.vm.firstPageUrl).toEqual(null); // TODO fix this
+    expect(wrapper.vm.firstPageUrl).toEqual(paginateData.first_page_url);
     expect(wrapper.vm.from).toEqual(paginateData.from);
     expect(wrapper.vm.lastPage).toEqual(paginateData.last_page);
-    expect(wrapper.vm.lastPageUrl).toEqual(null); // TODO fix this
+    expect(wrapper.vm.lastPageUrl).toEqual(paginateData.last_page_url);
     expect(wrapper.vm.nextPageUrl).toEqual(paginateData.next_page_url);
     expect(wrapper.vm.perPage).toEqual(paginateData.per_page);
     expect(wrapper.vm.prevPageUrl).toEqual(paginateData.prev_page_url);
@@ -86,16 +86,16 @@ test('parses paginate data', function () {
 
     expect(wrapper.vm.isApiResource).toEqual(false);
     expect(wrapper.vm.currentPage).toEqual(simplePaginateData.current_page);
-    expect(wrapper.vm.firstPageUrl).toEqual(null); // TODO fix this
+    expect(wrapper.vm.firstPageUrl).toEqual(simplePaginateData.first_page_url);
     expect(wrapper.vm.from).toEqual(simplePaginateData.from);
-    expect(wrapper.vm.lastPage).toBeUndefined(); // TODO fix this
+    expect(wrapper.vm.lastPage).toEqual(null);
     expect(wrapper.vm.lastPageUrl).toEqual(null);
     expect(wrapper.vm.nextPageUrl).toEqual(simplePaginateData.next_page_url);
     expect(wrapper.vm.perPage).toEqual(simplePaginateData.per_page);
     expect(wrapper.vm.prevPageUrl).toEqual(simplePaginateData.prev_page_url);
     expect(wrapper.vm.to).toEqual(simplePaginateData.to);
-    expect(wrapper.vm.total).toBeUndefined(); // TODO fix this
-    expect(wrapper.vm.pageRange).toBeUndefined(); // TODO fix this
+    expect(wrapper.vm.total).toEqual(null);
+    expect(wrapper.vm.pageRange).toEqual(null);
 });
 
 const resourcePaginateData = {

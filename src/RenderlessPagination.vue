@@ -24,42 +24,52 @@ export default {
         currentPage() {
             return this.isApiResource
                 ? this.data.meta.current_page
-                : this.data.current_page;
+                : this.data.current_page ?? null;
         },
         firstPageUrl() {
-            return this.isApiResource ? this.data.links.first : null;
+            return this.isApiResource
+                ? this.data.links.first
+                : this.data.first_page_url ?? null;
         },
         from() {
-            return this.isApiResource ? this.data.meta.from : this.data.from;
+            return this.isApiResource
+                ? this.data.meta.from
+                : this.data.from ?? null;
         },
         lastPage() {
             return this.isApiResource
                 ? this.data.meta.last_page
-                : this.data.last_page;
+                : this.data.last_page ?? null;
         },
         lastPageUrl() {
-            return this.isApiResource ? this.data.links.last : null;
+            return this.isApiResource
+                ? this.data.links.last
+                : this.data.last_page_url ?? null;
         },
         nextPageUrl() {
             return this.isApiResource
                 ? this.data.links.next
-                : this.data.next_page_url;
+                : this.data.next_page_url ?? null;
         },
         perPage() {
             return this.isApiResource
                 ? this.data.meta.per_page
-                : this.data.per_page;
+                : this.data.per_page ?? null;
         },
         prevPageUrl() {
             return this.isApiResource
                 ? this.data.links.prev
-                : this.data.prev_page_url;
+                : this.data.prev_page_url ?? null;
         },
         to() {
-            return this.isApiResource ? this.data.meta.to : this.data.to;
+            return this.isApiResource
+                ? this.data.meta.to
+                : this.data.to ?? null;
         },
         total() {
-            return this.isApiResource ? this.data.meta.total : this.data.total;
+            return this.isApiResource
+                ? this.data.meta.total
+                : this.data.total ?? null;
         },
         pageRange() {
             if (this.limit === -1) {
