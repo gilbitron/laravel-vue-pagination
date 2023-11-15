@@ -5,53 +5,63 @@ export default {
     props: {
         data: {
             type: Object,
-            default: () => {}
+            default: () => {},
         },
         limit: {
             type: Number,
-            default: 0
+            default: 0,
         },
         keepLength: {
             type: Boolean,
-            default: false
+            default: false,
         },
     },
 
     computed: {
-        isApiResource () {
+        isApiResource() {
             return !!this.data.meta;
         },
-        currentPage () {
-            return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
+        currentPage() {
+            return this.isApiResource
+                ? this.data.meta.current_page
+                : this.data.current_page;
         },
-        firstPageUrl () {
+        firstPageUrl() {
             return this.isApiResource ? this.data.links.first : null;
         },
-        from () {
+        from() {
             return this.isApiResource ? this.data.meta.from : this.data.from;
         },
-        lastPage () {
-            return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
+        lastPage() {
+            return this.isApiResource
+                ? this.data.meta.last_page
+                : this.data.last_page;
         },
-        lastPageUrl () {
+        lastPageUrl() {
             return this.isApiResource ? this.data.links.last : null;
         },
-        nextPageUrl () {
-            return this.isApiResource ? this.data.links.next : this.data.next_page_url;
+        nextPageUrl() {
+            return this.isApiResource
+                ? this.data.links.next
+                : this.data.next_page_url;
         },
-        perPage () {
-            return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
+        perPage() {
+            return this.isApiResource
+                ? this.data.meta.per_page
+                : this.data.per_page;
         },
-        prevPageUrl () {
-            return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
+        prevPageUrl() {
+            return this.isApiResource
+                ? this.data.links.prev
+                : this.data.prev_page_url;
         },
-        to () {
+        to() {
             return this.isApiResource ? this.data.meta.to : this.data.to;
         },
-        total () {
+        total() {
             return this.isApiResource ? this.data.meta.total : this.data.total;
         },
-        pageRange () {
+        pageRange() {
             if (this.limit === -1) {
                 return 0;
             }
@@ -67,7 +77,7 @@ export default {
             var left = current - delta;
             var right = current + delta;
             var leftPad = (delta + 2) * 2;
-            var rightPad = ((delta + 2) * 2) - 1;
+            var rightPad = (delta + 2) * 2 - 1;
             var range = [];
             var pages = [];
             var l;
@@ -86,7 +96,11 @@ export default {
                     range.push(i);
                 }
                 // Item is after max right padding
-                else if (size && i > last - rightPad && current > last - rightPad + 2) {
+                else if (
+                    size &&
+                    i > last - rightPad &&
+                    current > last - rightPad + 2
+                ) {
                     range.push(i);
                 }
             }
@@ -104,26 +118,26 @@ export default {
             });
 
             return pages;
-        }
+        },
     },
 
     methods: {
-        previousPage () {
-            this.selectPage((this.currentPage - 1));
+        previousPage() {
+            this.selectPage(this.currentPage - 1);
         },
-        nextPage () {
-            this.selectPage((this.currentPage + 1));
+        nextPage() {
+            this.selectPage(this.currentPage + 1);
         },
-        selectPage (page) {
+        selectPage(page) {
             if (page === '...' || page === this.currentPage) {
                 return;
             }
 
             this.$emit('pagination-change-page', page);
-        }
+        },
     },
 
-    render () {
+    render() {
         return this.$slots.default({
             data: this.data,
             limit: this.limit,
@@ -139,27 +153,27 @@ export default {
                 prevPageUrl: this.prevPageUrl,
                 to: this.to,
                 total: this.total,
-                pageRange: this.pageRange
+                pageRange: this.pageRange,
             },
             prevButtonEvents: {
                 click: (e) => {
                     e.preventDefault();
                     this.previousPage();
-                }
+                },
             },
             nextButtonEvents: {
                 click: (e) => {
                     e.preventDefault();
                     this.nextPage();
-                }
+                },
             },
-            pageButtonEvents: page => ({
+            pageButtonEvents: (page) => ({
                 click: (e) => {
                     e.preventDefault();
                     this.selectPage(page);
-                }
-            })
+                },
+            }),
         });
-    }
-}
+    },
+};
 </script>
