@@ -164,3 +164,66 @@ test('parses paginate data', function () {
     expect(wrapper.vm.total).toEqual(resourcePaginateData.meta.total);
     expect(wrapper.vm.pageRange).toEqual(10);
 });
+
+const dataPaginateData = {
+    data: [...Array(10).keys()],
+    links: [
+        {
+            url: null,
+            label: '\u00ab Previous',
+            active: false,
+        },
+        {
+            url: 'https://example.com/pagination?page=1',
+            label: '1',
+            active: true,
+        },
+        {
+            url: 'https://example.com/pagination?page=2',
+            label: '2',
+            active: false,
+        },
+        {
+            url: 'https://example.com/pagination?page=3',
+            label: 'Next \u00bb',
+            active: false,
+        },
+    ],
+    meta: {
+        current_page: 1,
+        first_page_url: 'https://example.com/pagination?page=1',
+        from: 1,
+        last_page: 10,
+        last_page_url: 'https://example.com/pagination?page=10',
+        next_page_url: 'https://example.com/pagination?page=2',
+        path: 'https://example.com/pagination',
+        per_page: 10,
+        prev_page_url: null,
+        to: 10,
+        total: 100,
+    },
+};
+
+test('parses paginate data', function () {
+    const wrapper = mount(RenderlessPagination, {
+        slots: {
+            default: '<div></div>',
+        },
+        propsData: {
+            data: dataPaginateData,
+        },
+    });
+
+    expect(wrapper.vm.isApiResource).toEqual(true);
+    expect(wrapper.vm.currentPage).toEqual(dataPaginateData.meta.current_page);
+    expect(wrapper.vm.firstPageUrl).toEqual(dataPaginateData.links.first);
+    expect(wrapper.vm.from).toEqual(dataPaginateData.meta.from);
+    expect(wrapper.vm.lastPage).toEqual(dataPaginateData.meta.last_page);
+    expect(wrapper.vm.lastPageUrl).toEqual(dataPaginateData.links.last);
+    expect(wrapper.vm.nextPageUrl).toEqual(dataPaginateData.links.next);
+    expect(wrapper.vm.perPage).toEqual(dataPaginateData.meta.per_page);
+    expect(wrapper.vm.prevPageUrl).toEqual(dataPaginateData.links.prev);
+    expect(wrapper.vm.to).toEqual(dataPaginateData.meta.to);
+    expect(wrapper.vm.total).toEqual(dataPaginateData.meta.total);
+    expect(wrapper.vm.pageRange).toEqual(10);
+});
