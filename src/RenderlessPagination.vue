@@ -27,9 +27,12 @@ export default {
                 : this.data.current_page ?? null;
         },
         firstPageUrl() {
-            return this.isApiResource
-                ? this.data.links.first
-                : this.data.first_page_url ?? null;
+            return (
+                this.data.first_page_url ??
+                this.data.meta?.first_page_url ??
+                this.data.links?.first ??
+                null
+            );
         },
         from() {
             return this.isApiResource
@@ -42,14 +45,20 @@ export default {
                 : this.data.last_page ?? null;
         },
         lastPageUrl() {
-            return this.isApiResource
-                ? this.data.links.last
-                : this.data.last_page_url ?? null;
+            return (
+                this.data.last_page_url ??
+                this.data.meta?.last_page_url ??
+                this.data.links?.last ??
+                null
+            );
         },
         nextPageUrl() {
-            return this.isApiResource
-                ? this.data.links.next
-                : this.data.next_page_url ?? null;
+            return (
+                this.data.next_page_url ??
+                this.data.meta?.next_page_url ??
+                this.data.links?.next ??
+                null
+            );
         },
         perPage() {
             return this.isApiResource
@@ -57,9 +66,12 @@ export default {
                 : this.data.per_page ?? null;
         },
         prevPageUrl() {
-            return this.isApiResource
-                ? this.data.links.prev
-                : this.data.prev_page_url ?? null;
+            return (
+                this.data.prev_page_url ??
+                this.data.meta?.prev_page_url ??
+                this.data.links?.prev ??
+                null
+            );
         },
         to() {
             return this.isApiResource

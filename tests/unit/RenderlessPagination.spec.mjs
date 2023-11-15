@@ -216,13 +216,15 @@ test('parses paginate data', function () {
 
     expect(wrapper.vm.isApiResource).toEqual(true);
     expect(wrapper.vm.currentPage).toEqual(dataPaginateData.meta.current_page);
-    expect(wrapper.vm.firstPageUrl).toEqual(dataPaginateData.links.first);
+    expect(wrapper.vm.firstPageUrl).toEqual(
+        dataPaginateData.meta.first_page_url
+    );
     expect(wrapper.vm.from).toEqual(dataPaginateData.meta.from);
     expect(wrapper.vm.lastPage).toEqual(dataPaginateData.meta.last_page);
-    expect(wrapper.vm.lastPageUrl).toEqual(dataPaginateData.links.last);
-    expect(wrapper.vm.nextPageUrl).toEqual(dataPaginateData.links.next);
+    expect(wrapper.vm.lastPageUrl).toEqual(dataPaginateData.meta.last_page_url);
+    expect(wrapper.vm.nextPageUrl).toEqual(dataPaginateData.meta.next_page_url);
     expect(wrapper.vm.perPage).toEqual(dataPaginateData.meta.per_page);
-    expect(wrapper.vm.prevPageUrl).toEqual(dataPaginateData.links.prev);
+    expect(wrapper.vm.prevPageUrl).toEqual(dataPaginateData.meta.prev_page_url);
     expect(wrapper.vm.to).toEqual(dataPaginateData.meta.to);
     expect(wrapper.vm.total).toEqual(dataPaginateData.meta.total);
     expect(wrapper.vm.pageRange).toEqual(10);
