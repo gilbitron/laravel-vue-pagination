@@ -3,6 +3,7 @@
         :data="data"
         :limit="limit"
         :keep-length="keepLength"
+        :lang="lang"
         @pagination-change-page="onPaginationChangePage"
         v-slot="slotProps"
     >
@@ -41,7 +42,7 @@
                 v-on="slotProps.pageButtonEvents(page)"
                 :disabled="page === slotProps.computed.currentPage"
             >
-                {{ page }}
+              {{ slotProps.translatePage(page) }}
             </button>
 
             <button
@@ -109,6 +110,10 @@ export default {
                 'border-blue-500',
                 'text-blue-600',
             ],
+        },
+        lang: {
+          type: String,
+          default: 'en-US',
         },
     },
 

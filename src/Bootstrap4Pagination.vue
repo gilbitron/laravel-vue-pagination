@@ -3,6 +3,7 @@
         :data="data"
         :limit="limit"
         :keep-length="keepLength"
+        :lang="lang"
         @pagination-change-page="onPaginationChangePage"
         v-slot="slotProps"
     >
@@ -28,7 +29,7 @@
 
             <li class="page-item pagination-page-nav" v-for="(page, key) in slotProps.computed.pageRange" :key="key" :class="{ 'active': page == slotProps.computed.currentPage }">
                 <a class="page-link" href="#" v-on="slotProps.pageButtonEvents(page)">
-                    {{ page }}
+                    {{ slotProps.translatePage(page) }}
                     <span class="sr-only" v-if="page == slotProps.computed.currentPage">(current)</span>
                 </a>
             </li>
@@ -53,7 +54,7 @@ export default {
     compatConfig: {
         MODE: 3
     },
-  
+
     inheritAttrs: false,
 
     emits: ['pagination-change-page'],
@@ -92,7 +93,11 @@ export default {
             validator: value => {
                 return ['left', 'center', 'right'].indexOf(value) !== -1;
             }
-        }
+        },
+        lang: {
+          type: String,
+          default: 'en-US',
+        },
     },
 
     methods: {

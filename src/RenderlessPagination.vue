@@ -15,6 +15,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        lang: {
+            type: String,
+            default: 'en-US',
+        },
     },
 
     computed: {
@@ -195,6 +199,12 @@ export default {
                     this.selectPage(page);
                 },
             }),
+            translatePage: (page) => {
+                if (typeof page !== 'number') {
+                    return page;
+                }
+                return page.toLocaleString(this.lang);
+            },
         });
     },
 };
