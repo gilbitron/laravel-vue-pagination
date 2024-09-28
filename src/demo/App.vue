@@ -23,6 +23,13 @@
                         <option value="right">Right</option>
                     </select>
                 </div>
+              <div class="col">
+                <label class="form-label" for="align">Translate</label><br>
+                <select id="align" class="form-select" v-model="lang">
+                  <option value="en-US">English</option>
+                  <option value="bn-BD">Bengali</option>
+                </select>
+              </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -55,10 +62,11 @@
                         :show-disabled="showDisabled"
                         :size="size"
                         :align="align"
+                        :lang="lang"
                         @pagination-change-page="getResults"
                     />
                 </RenderToIFrame>
-              
+
                 <h3 class="mt-3 mb-2">Bootstrap 5</h3>
                 <RenderToIFrame>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
@@ -70,6 +78,7 @@
                         :show-disabled="showDisabled"
                         :size="size"
                         :align="align"
+                        :lang="lang"
                         @pagination-change-page="getResults"
                     />
                 </RenderToIFrame>
@@ -80,6 +89,7 @@
                         :data="laravelData"
                         :limit="limit"
                         :keep-length="keepLength"
+                        :lang="lang"
                         @pagination-change-page="getResults"
                     />
                 </RenderToIFrame>
@@ -133,7 +143,8 @@ export default {
             keepLength: false,
             showDisabled: false,
             size: 'default',
-            align: 'left'
+            align: 'left',
+            lang: 'en-US'
         }
     },
 
